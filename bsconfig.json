@@ -1,0 +1,34 @@
+{
+    "name": "my-rescript-vite-app",
+    "sources": [
+        {
+            "dir": "pages",
+            "subdirs": true
+        },
+        {
+            "dir": "renderer",
+            "subdirs": true
+        },
+        {
+            "dir": "server",
+            "subdirs": true
+        }
+    ],
+    "package-specs": {
+        "module": "es6",
+        "in-source": true,
+        "suffix": ".mjs"
+    },
+    "jsx": {
+        "version": 4,
+        "mode": "automatic"
+    },
+    "bs-dependencies": [
+        "@rescript/core",
+        "@rescript/react"
+    ],
+    "bs-dev-dependencies": [],
+    "bsc-flags": [
+        "-open RescriptCore"
+    ]
+}

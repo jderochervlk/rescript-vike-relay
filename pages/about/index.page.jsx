@@ -1,14 +1,14 @@
-import './code.css'
+import "./code.css";
+import { Foo } from "./Foo";
 
-export { Page }
+export { Page };
 
 function Page() {
   return (
     <>
       <h1>About</h1>
-      <p>
-        Example of using Vike.
-      </p>
+      <p>Example of using Vike...</p>
+      <Foo />
     </>
-  )
+  );
 }
