@@ -1,8 +1,8 @@
 @react.component
-let make = (~className, ~to, ~children, ~href) => {
+let make = (~className, ~to, ~children) => {
   // pageContext.urlPathname === props.href && 'is-active'].filter(Boolean).join(' ')
 
   let onClick = _ => Vite.Client.Router.navigate(to)
 
-  <a className onClick> {children} </a>
+  <a className onClick style={{cursor: "pointer"}}> {children} </a>
 }

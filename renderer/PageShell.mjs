@@ -2,11 +2,14 @@
 
 import * as Link from "./Link.mjs";
 import * as React from "react";
+import LogoSvg from "./logo.svg";
 import * as PageContext from "./pageContext.mjs";
 import * as JsxRuntime from "react/jsx-runtime";
 
 import './PageShell.css'
 ;
+
+var logoSvg = LogoSvg;
 
 function PageShell$Sidebar(props) {
   return JsxRuntime.jsx("div", {
@@ -48,6 +51,7 @@ function PageShell$Logo(props) {
                     children: JsxRuntime.jsx("img", {
                           alt: "logo",
                           height: "64px",
+                          src: logoSvg,
                           width: "64px"
                         }),
                     href: "/"
@@ -86,17 +90,16 @@ function PageShell(props) {
                           children: [
                             JsxRuntime.jsxs(PageShell$Sidebar, {
                                   children: [
+                                    JsxRuntime.jsx(PageShell$Logo, {}),
                                     JsxRuntime.jsx(Link.make, {
                                           className: "navitem",
                                           to: "/",
-                                          children: "Home",
-                                          href: "/"
+                                          children: "Home"
                                         }),
                                     JsxRuntime.jsx(Link.make, {
                                           className: "navitem",
                                           to: "/about",
-                                          children: "About",
-                                          href: "/about"
+                                          children: "About"
                                         })
                                   ]
                                 }),
@@ -112,6 +115,7 @@ function PageShell(props) {
 var make = PageShell;
 
 export {
+  logoSvg ,
   Sidebar ,
   Content ,
   Logo ,

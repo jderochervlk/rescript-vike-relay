@@ -11,6 +11,9 @@ function Link(props) {
   return JsxRuntime.jsx("a", {
               children: props.children,
               className: props.className,
+              style: {
+                cursor: "pointer"
+              },
               onClick: onClick
             });
 }

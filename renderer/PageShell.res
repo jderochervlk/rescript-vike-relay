@@ -1,7 +1,6 @@
 %%raw("import './PageShell.css'")
 
-// TODO: load logo SVG
-
+@module("./logo.svg") external logoSvg: string = "default"
 module Sidebar = {
   @react.component
   let make = (~children) => {
@@ -43,7 +42,7 @@ module Logo = {
         marginBottom: "10px",
       }}>
       <a href="/">
-        <img /* src={logo} */ height="64px" width={"64px"} alt="logo" />
+        <img src={logoSvg} height="64px" width={"64px"} alt="logo" />
       </a>
     </div>
 }
@@ -68,9 +67,9 @@ let make = (~pageContext, ~children) => {
     <PageContext.Provider pageContext={pageContext}>
       <Layout>
         <Sidebar>
-          // <Logo />
-          <Link className="navitem" to="/" href="/"> {React.string("Home")} </Link>
-          <Link className="navitem" to="/about" href="/about"> {React.string("About")} </Link>
+          <Logo />
+          <Link className="navitem" to="/"> {React.string("Home")} </Link>
+          <Link className="navitem" to="/about"> {React.string("About")} </Link>
         </Sidebar>
         <Content> {children} </Content>
       </Layout>
