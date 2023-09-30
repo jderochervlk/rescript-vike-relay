@@ -3,7 +3,7 @@ export { render };
 export const passToClient = ["pageProps", "urlPathname"];
 
 import ReactDOMServer from "react-dom/server";
-import { PageShell } from "./PageShell";
+import { make as PageShell } from "./PageShell";
 import { escapeInject, dangerouslySkipEscape } from "vike/server";
 import logoUrl from "./logo.svg";
 

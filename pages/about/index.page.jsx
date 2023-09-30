@@ -1,14 +1,1 @@
-import "./code.css";
-import { Foo } from "./Foo";
-
-export { Page };
-
-function Page() {
-  return (
-    <>
-      <h1>About</h1>
-      <p>Example of using Vike...</p>
-      <Foo />
-    </>
-  );
-}
+export { make as Page } from "./about_page";

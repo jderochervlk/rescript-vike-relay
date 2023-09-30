@@ -1,7 +1,7 @@
 export { render };
 
 import { hydrateRoot, createRoot } from "react-dom/client";
-import { PageShell } from "./PageShell";
+import { make as PageShell } from "./PageShell";
 
 let root;
 // This render() hook only supports SSR, see https://vike.dev/render-modes for how to modify render() to support SPA

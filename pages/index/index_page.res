@@ -1,5 +1,5 @@
-@genType.as("page")
-let \"Page" = () => {
+@react.component
+let make = () => {
   <React.Fragment>
     <h1> {React.string("Welcome")} </h1>
     {React.string("This page is:")}

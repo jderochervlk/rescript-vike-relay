@@ -4,7 +4,7 @@ import * as React from "react";
 import * as Counter from "./Counter.mjs";
 import * as JsxRuntime from "react/jsx-runtime";
 
-function Page() {
+function Index_page(props) {
   return JsxRuntime.jsxs(React.Fragment, {
               children: [
                 JsxRuntime.jsx("h1", {
@@ -28,7 +28,9 @@ function Page() {
             });
 }
 
+var make = Index_page;
+
 export {
-  Page ,
+  make ,
 }
 /* react Not a pure module */
