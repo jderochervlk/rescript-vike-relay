@@ -10,7 +10,7 @@ function Counter(props) {
   var setCount = match[1];
   return JsxRuntime.jsxs("button", {
               children: [
-                "Counter",
+                "Counter: ",
                 match[0].toString()
               ],
               type: "button",

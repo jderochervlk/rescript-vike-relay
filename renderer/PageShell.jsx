@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import logo from "./logo.svg";
 import "./PageShell.css";
 import { PageContextProvider } from "./usePageContext";
-import { Link } from "./Link";
+import { make as Link } from "./Link";
 import { childrenPropType } from "./PropTypeValues";
 
 export { PageShell };
@@ -19,10 +19,10 @@ function PageShell({ pageContext, children }) {
         <Layout>
           <Sidebar>
             <Logo />
-            <Link className="navitem" href="/">
+            <Link className="navitem" to="/" href="/">
               Home
             </Link>
-            <Link className="navitem" href="/about">
+            <Link className="navitem" to="/about" href="/about">
               About
             </Link>
           </Sidebar>

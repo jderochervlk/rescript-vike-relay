@@ -4,7 +4,7 @@ import ssr from "vike/plugin";
 export default {
   plugins: [
     react({
-      include: ["**/*.mjs", "**/*.jsx"],
+      include: ["**/*.mjs", "**/*.jsx", ".js"],
     }),
     ssr(),
   ],
