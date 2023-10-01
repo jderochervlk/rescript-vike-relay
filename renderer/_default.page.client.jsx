@@ -7,6 +7,7 @@ let root;
 // This render() hook only supports SSR, see https://vike.dev/render-modes for how to modify render() to support SPA
 async function render(pageContext) {
   const { Page, pageProps } = pageContext;
+  console.log(pageContext);
   const page = (
     <PageShell pageContext={pageContext}>
       <Page {...pageProps} />

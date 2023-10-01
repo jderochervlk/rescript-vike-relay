@@ -2,8 +2,8 @@
 
 import * as Link from "./Link.mjs";
 import * as React from "react";
+import * as PageState from "./pageState.mjs";
 import LogoSvg from "./logo.svg";
-import * as PageContext from "./pageContext.mjs";
 import * as JsxRuntime from "react/jsx-runtime";
 
 import './PageShell.css'
@@ -83,31 +83,35 @@ var Layout = {
 };
 
 function PageShell(props) {
+  var pageContext = props.pageContext;
+  console.log(101, pageContext);
+  var match = PageState.useAtom(undefined);
+  var setState = match[1];
+  React.useEffect((function () {
+          setState(pageContext);
+        }), [pageContext]);
   return JsxRuntime.jsx(React.StrictMode, {
-              children: JsxRuntime.jsx(PageContext.Provider.make, {
-                    pageContext: props.pageContext,
-                    children: JsxRuntime.jsxs(PageShell$Layout, {
-                          children: [
-                            JsxRuntime.jsxs(PageShell$Sidebar, {
-                                  children: [
-                                    JsxRuntime.jsx(PageShell$Logo, {}),
-                                    JsxRuntime.jsx(Link.make, {
-                                          className: "navitem",
-                                          to: "/",
-                                          children: "Home"
-                                        }),
-                                    JsxRuntime.jsx(Link.make, {
-                                          className: "navitem",
-                                          to: "/about",
-                                          children: "About"
-                                        })
-                                  ]
-                                }),
-                            JsxRuntime.jsx(PageShell$Content, {
-                                  children: props.children
-                                })
-                          ]
-                        })
+              children: JsxRuntime.jsxs(PageShell$Layout, {
+                    children: [
+                      JsxRuntime.jsxs(PageShell$Sidebar, {
+                            children: [
+                              JsxRuntime.jsx(PageShell$Logo, {}),
+                              JsxRuntime.jsx(Link.make, {
+                                    className: "navitem",
+                                    href: "/",
+                                    children: "Home"
+                                  }),
+                              JsxRuntime.jsx(Link.make, {
+                                    className: "navitem",
+                                    href: "/about",
+                                    children: "About"
+                                  })
+                            ]
+                          }),
+                      JsxRuntime.jsx(PageShell$Content, {
+                            children: props.children
+                          })
+                    ]
                   })
             });
 }

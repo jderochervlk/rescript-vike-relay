@@ -29,7 +29,8 @@
     },
     "bs-dependencies": [
         "@rescript/core",
-        "@rescript/react"
+        "@rescript/react",
+        "@fattafatta/rescript-jotai"
     ],
     "bs-dev-dependencies": [],
     "bsc-flags": [

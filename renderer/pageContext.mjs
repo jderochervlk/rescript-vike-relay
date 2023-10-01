@@ -3,14 +3,16 @@
 import * as React from "react";
 import * as JsxRuntime from "react/jsx-runtime";
 
-var context = React.createContext(0);
+var context = React.createContext(undefined);
 
 var t = context.Provider;
 
 function PageContext$Provider(props) {
+  var pageContext = props.pageContext;
+  console.log(202, pageContext);
   return JsxRuntime.jsx("t", {
               children: props.children,
-              value: props.pageContext
+              value: pageContext
             });
 }
 
@@ -23,7 +25,10 @@ function usePageContext() {
   return React.useContext(context);
 }
 
+var empty;
+
 export {
+  empty ,
   context ,
   Provider ,
   usePageContext ,

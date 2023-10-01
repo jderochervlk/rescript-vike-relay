@@ -1,8 +1,29 @@
 @react.component
-let make = (~className, ~to, ~children) => {
-  // pageContext.urlPathname === props.href && 'is-active'].filter(Boolean).join(' ')
+let make = (~className, ~href, ~children) => {
+  let context = PageContext.usePageContext()
 
-  let onClick = _ => Vite.Client.Router.navigate(to)
+  Console.log(context)
 
-  <a className onClick style={{cursor: "pointer"}}> {children} </a>
+  let isActive = false
+
+  let (state, _) = PageState.useAtom()
+
+  let url = state->Object.get("urlOriginal")
+
+  // let isActive = switch url {
+  // | None => href == "/"
+  // | Some(u) => href->String.includes("/" ++ u)
+  // }
+
+  Console.log4(400, url, href, isActive)
+
+  // console.log2()
+
+  <a
+    className={className ++ (isActive ? " is-active" : "")}
+    // onClick
+    href
+    style={{cursor: "pointer"}}>
+    {children}
+  </a>
 }
