@@ -63,22 +63,14 @@ module Layout = {
 
 @react.component
 let make = (~pageContext, ~children) => {
-  // let (_, setState) = PageState.useAtom()
-  // React.useEffect1(() => {
-  //   setState(pageContext)
-  //   None
-  // }, [pageContext])
   <React.StrictMode>
-    // <PageContext.Provider pageContext={pageContext}>
     <Layout>
       <Sidebar>
         <Logo />
         <Link className="navitem" href="/"> {React.string("Home")} </Link>
         <Link className="navitem" href="/about"> {React.string("About")} </Link>
       </Sidebar>
-      <Chunk />
       <Content> {children} </Content>
     </Layout>
-    // </PageContext.Provider>
   </React.StrictMode>
 }

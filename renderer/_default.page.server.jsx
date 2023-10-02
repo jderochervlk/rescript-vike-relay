@@ -5,9 +5,11 @@ export const passToClient = ["pageProps", "urlPathname"];
 import ReactDOMServer from "react-dom/server";
 import { make as PageShell } from "../src/PageShell";
 import { escapeInject, dangerouslySkipEscape } from "vike/server";
-import logoUrl from "./logo.svg";
-import { RelayEnvironmentProvider } from "react-relay";
-import Environment, { makeEnvironment } from "./RelayEnvironment";
+import logoUrl from "../src/logo.svg";
+import pkg from "react-relay";
+import { makeEnvironment } from "./RelayEnvironment";
+
+const { RelayEnvironmentProvider } = pkg;
 
 async function render(pageContext) {
   const { Page, pageProps } = pageContext;

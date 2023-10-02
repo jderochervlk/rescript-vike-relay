@@ -4,7 +4,6 @@ import * as React from "react";
 import LogoSvg from "./logo.svg";
 import * as JsxRuntime from "react/jsx-runtime";
 import * as Link$MyRescriptViteApp from "../renderer/Link.mjs";
-import * as Chunk$MyRescriptViteApp from "./Chunk.mjs";
 
 import './PageShell.css'
 ;
@@ -101,7 +100,6 @@ function PageShell(props) {
                                   })
                             ]
                           }),
-                      JsxRuntime.jsx(Chunk$MyRescriptViteApp.make, {}),
                       JsxRuntime.jsx(PageShell$Content, {
                             children: props.children
                           })

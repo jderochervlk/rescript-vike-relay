@@ -4,6 +4,8 @@
 let make = () => {
   <React.Fragment>
     <h1> {React.string("About")} </h1>
-    <p> {React.string("Example of using Vike...")} </p>
+    <Character id="1" />
+    <Character id="2" />
+    <Character id="3" />
   </React.Fragment>
 }

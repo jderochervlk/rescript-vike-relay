@@ -6,7 +6,9 @@ export default {
     react({
       include: ["**/*.mjs", "**/*.jsx", ".js"],
     }),
-    ssr(),
-    relay,
+    ssr({
+      prerender: true,
+    }),
+    // relay,
   ],
 };

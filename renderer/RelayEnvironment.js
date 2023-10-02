@@ -16,7 +16,7 @@ export const makeEnvironment = () => {
     network: new RelayNetworkLayer(
       [
         urlMiddleware({
-          url: `https://countries.trevorblades.com/graphql`,
+          url: `https://rickandmortyapi.com/graphql`,
         }),
         retryMiddleware(),
         process.env.NODE_ENV !== "development" ? undefined : errorMiddleware(),
@@ -36,31 +36,15 @@ export const makeEnvironment = () => {
   });
 };
 
-function fetchQuery(operation, variables, cacheConfig, uploadables) {
-  return fetch("https://countries.trevorblades.com/graphql", {
-    method: "POST",
-    headers: {
-      // Add authentication and other headers here
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      query: operation.text, // GraphQL text from input
-      variables,
-    }),
-  }).then((response) => {
-    return response.json();
-  });
-}
+// function createEnv(cache) {
+//   const isServer = typeof window === "undefined";
 
-function createEnv(cache) {
-  const isServer = typeof window === "undefined";
-
-  const relaySSRMiddleware = isServer
-    ? new RelayServerSSR()
-    : new RelayClientSSR(cache);
-}
+//   const relaySSRMiddleware = isServer
+//     ? new RelayServerSSR()
+//     : new RelayClientSSR(cache);
+// }
 
 export default new Environment({
-  network: Network.create(fetchQuery),
+  network: Network.create(makeEnvironment()),
   store: new Store(new RecordSource()),
 });
