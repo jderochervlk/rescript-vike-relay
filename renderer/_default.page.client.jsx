@@ -1,7 +1,9 @@
 export { render };
 
 import { hydrateRoot, createRoot } from "react-dom/client";
-import { make as PageShell } from "./PageShell";
+import { make as PageShell } from "../src/PageShell";
+import { RelayEnvironmentProvider } from "react-relay";
+import Environment, { makeEnvironment } from "./RelayEnvironment";
 
 let root;
 // This render() hook only supports SSR, see https://vike.dev/render-modes for how to modify render() to support SPA
@@ -9,9 +11,11 @@ async function render(pageContext) {
   const { Page, pageProps } = pageContext;
   console.log(pageContext);
   const page = (
-    <PageShell pageContext={pageContext}>
-      <Page {...pageProps} />
-    </PageShell>
+    <RelayEnvironmentProvider environment={makeEnvironment()}>
+      <PageShell pageContext={pageContext}>
+        <Page {...pageProps} />
+      </PageShell>
+    </RelayEnvironmentProvider>
   );
   const container = document.getElementById("react-root");
   if (!Page)

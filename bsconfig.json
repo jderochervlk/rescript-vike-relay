@@ -1,5 +1,6 @@
 {
     "name": "my-rescript-vite-app",
+    "uncurried": false,
     "sources": [
         {
             "dir": "pages",
@@ -16,6 +17,10 @@
         {
             "dir": "bindings",
             "subdirs": true
+        },
+        {
+            "dir": "src",
+            "subdirs": true
         }
     ],
     "package-specs": {
@@ -23,6 +28,9 @@
         "in-source": true,
         "suffix": ".mjs"
     },
+    "ppx-flags": [
+        "rescript-relay/ppx"
+    ],
     "jsx": {
         "version": 4,
         "mode": "automatic"
@@ -30,8 +38,10 @@
     "bs-dependencies": [
         "@rescript/core",
         "@rescript/react",
-        "@fattafatta/rescript-jotai"
+        "@fattafatta/rescript-jotai",
+        "rescript-relay"
     ],
+    "namespace": true,
     "bs-dev-dependencies": [],
     "bsc-flags": [
         "-open RescriptCore"

@@ -21,7 +21,7 @@ var Provider = {
   make: PageContext$Provider
 };
 
-function usePageContext() {
+function usePageContext(param) {
   return React.useContext(context);
 }
 
