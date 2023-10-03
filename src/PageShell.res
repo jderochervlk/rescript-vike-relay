@@ -63,14 +63,7 @@ module Layout = {
 
 @react.component
 let make = (~pageContext, ~children) => {
-  Console.log2(101, pageContext)
-  let (_, setState) = PageState.useAtom()
-  React.useEffect1(() => {
-    setState(pageContext)
-    None
-  }, [pageContext])
   <React.StrictMode>
-    // <PageContext.Provider pageContext={pageContext}>
     <Layout>
       <Sidebar>
         <Logo />
@@ -79,6 +72,5 @@ let make = (~pageContext, ~children) => {
       </Sidebar>
       <Content> {children} </Content>
     </Layout>
-    // </PageContext.Provider>
   </React.StrictMode>
 }

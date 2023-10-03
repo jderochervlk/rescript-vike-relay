@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import * as JsxRuntime from "react/jsx-runtime";
+import * as Character$MyRescriptViteApp from "../../src/Character.mjs";
 
 import './code.css'
 ;
@@ -12,8 +13,14 @@ function About_page(props) {
                 JsxRuntime.jsx("h1", {
                       children: "About"
                     }),
-                JsxRuntime.jsx("p", {
-                      children: "Example of using Vike..."
+                JsxRuntime.jsx(Character$MyRescriptViteApp.make, {
+                      id: "1"
+                    }),
+                JsxRuntime.jsx(Character$MyRescriptViteApp.make, {
+                      id: "2"
+                    }),
+                JsxRuntime.jsx(Character$MyRescriptViteApp.make, {
+                      id: "3"
                     })
               ]
             });

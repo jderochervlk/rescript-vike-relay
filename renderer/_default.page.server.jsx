@@ -3,9 +3,13 @@ export { render };
 export const passToClient = ["pageProps", "urlPathname"];
 
 import ReactDOMServer from "react-dom/server";
-import { make as PageShell } from "./PageShell";
+import { make as PageShell } from "../src/PageShell";
 import { escapeInject, dangerouslySkipEscape } from "vike/server";
-import logoUrl from "./logo.svg";
+import logoUrl from "../src/logo.svg";
+import pkg from "react-relay";
+import { makeEnvironment } from "./RelayEnvironment";
+
+const { RelayEnvironmentProvider } = pkg;
 
 async function render(pageContext) {
   const { Page, pageProps } = pageContext;
@@ -13,9 +17,11 @@ async function render(pageContext) {
   if (!Page)
     throw new Error("My render() hook expects pageContext.Page to be defined");
   const pageHtml = ReactDOMServer.renderToString(
-    <PageShell pageContext={pageContext}>
-      <Page {...pageProps} />
-    </PageShell>
+    <RelayEnvironmentProvider environment={makeEnvironment()}>
+      <PageShell pageContext={pageContext}>
+        <Page {...pageProps} />
+      </PageShell>
+    </RelayEnvironmentProvider>
   );
 
   // See https://vike.dev/head

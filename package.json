@@ -6,8 +6,9 @@
     "server:dev": "node ./server",
     "server:prod": "cross-env NODE_ENV=production node ./server",
     "lint": "eslint . --max-warnings 0",
-    "res:build": "rescript build",
-    "res:dev": "rescript build -w"
+    "res:build": "rescript build -with-deps",
+    "res:dev": "rescript build -w -with-deps",
+    "relay": "rescript-relay-compiler"
   },
   "dependencies": {
     "@fattafatta/rescript-jotai": "^0.3.0",
@@ -25,10 +26,21 @@
     "prop-types": "15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rescript": "^11.0.0-rc.3",
+    "react-relay": "^15",
+    "react-relay-network-modern": "^6.2.2",
+    "react-relay-network-modern-ssr": "^1.4.0",
+    "relay-runtime": "^15.0.0",
+    "rescript": "11.0.0-beta.2",
+    "rescript-relay": "^2",
     "sirv": "^2.0.3",
     "vike": "^0.4.142",
     "vite": "^4.4.9"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "babel-plugin-relay": "^15.0.0",
+    "graphql": "^16.8.1",
+    "relay-compiler": "^15.0.0",
+    "vite-plugin-relay": "^2.0.0"
+  }
 }
