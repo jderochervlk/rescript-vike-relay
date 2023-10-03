@@ -9,8 +9,8 @@ module Query = %relay(`
 
 module Card = {
   @react.component
-  let make = (~id) => {
-    let data = Query.use(~variables={characterId: id}, ())
+  let make = (~id, ~queryRef) => {
+    let data = Query.usePreloaded(~queryRef)
 
     switch data.character {
     | Some(character) =>
@@ -27,8 +27,23 @@ module Card = {
   }
 }
 
+module Wrapper = {
+  @react.component
+  let make = (~id: string) => {
+    let (queryRef, load, cleanup) = Query.useLoader()
+    React.useEffect0(() => {
+      let _ = load(~variables={characterId: id}, ())
+      Some(() => cleanup())
+    })
+    switch queryRef {
+    | Some(queryRef) => <Card id queryRef />
+    | None => React.null
+    }
+  }
+}
+
 @react.component
 let make = (~id) =>
   <React.Suspense>
-    <Card id />
+    <Wrapper id />
   </React.Suspense>
