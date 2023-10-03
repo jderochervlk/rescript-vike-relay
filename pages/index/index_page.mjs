@@ -6,29 +6,31 @@ import * as Counter$MyRescriptViteApp from "./Counter.mjs";
 
 function Index_page(props) {
   return JsxRuntime.jsxs(React.Fragment, {
-    children: [
-      JsxRuntime.jsx("h1", {
-        children: "Welcome",
-      }),
-      "This page is:",
-      JsxRuntime.jsxs("ul", {
-        children: [
-          JsxRuntime.jsx("li", {
-            children: "Rendered to HTML.",
-          }),
-          JsxRuntime.jsxs("li", {
-            children: [
-              "Interactive ",
-              JsxRuntime.jsx(Counter$MyRescriptViteApp.make, {}),
-            ],
-          }),
-        ],
-      }),
-    ],
-  });
+              children: [
+                JsxRuntime.jsx("h1", {
+                      children: "Welcome"
+                    }),
+                "This page is:",
+                JsxRuntime.jsxs("ul", {
+                      children: [
+                        JsxRuntime.jsx("li", {
+                              children: "Rendered to HTML."
+                            }),
+                        JsxRuntime.jsxs("li", {
+                              children: [
+                                "Interactive ",
+                                JsxRuntime.jsx(Counter$MyRescriptViteApp.make, {})
+                              ]
+                            })
+                      ]
+                    })
+              ]
+            });
 }
 
 var make = Index_page;
 
-export { make };
+export {
+  make ,
+}
 /* react Not a pure module */

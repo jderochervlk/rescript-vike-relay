@@ -5,12 +5,12 @@ import * as RescriptRelay from "rescript-relay/src/RescriptRelay.mjs";
 
 function makeRefetchVariables(characterId, param) {
   return {
-    characterId: characterId,
-  };
+          characterId: characterId
+        };
 }
 
 var Types = {
-  makeRefetchVariables: makeRefetchVariables,
+  makeRefetchVariables: makeRefetchVariables
 };
 
 var variablesConverter = {};
@@ -42,104 +42,107 @@ var Internal = {
   responseConverterMap: undefined,
   convertResponse: convertResponse,
   convertWrapRawResponse: convertWrapResponse,
-  convertRawResponse: convertResponse,
+  convertRawResponse: convertResponse
 };
 
 var Utils = {};
 
-var node = (function () {
-  var v0 = [
+var node = ((function(){
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "characterId"
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "id",
+    "variableName": "characterId"
+  }
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "image",
+  "storageKey": null
+};
+return {
+  "fragment": {
+    "argumentDefinitions": (v0/*: any*/),
+    "kind": "Fragment",
+    "metadata": null,
+    "name": "CharacterQuery",
+    "selections": [
       {
-        defaultValue: null,
-        kind: "LocalArgument",
-        name: "characterId",
-      },
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Character",
+        "kind": "LinkedField",
+        "name": "character",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          (v3/*: any*/)
+        ],
+        "storageKey": null
+      }
     ],
-    v1 = [
+    "type": "Query",
+    "abstractKey": null
+  },
+  "kind": "Request",
+  "operation": {
+    "argumentDefinitions": (v0/*: any*/),
+    "kind": "Operation",
+    "name": "CharacterQuery",
+    "selections": [
       {
-        kind: "Variable",
-        name: "id",
-        variableName: "characterId",
-      },
-    ],
-    v2 = {
-      alias: null,
-      args: null,
-      kind: "ScalarField",
-      name: "name",
-      storageKey: null,
-    },
-    v3 = {
-      alias: null,
-      args: null,
-      kind: "ScalarField",
-      name: "image",
-      storageKey: null,
-    };
-  return {
-    fragment: {
-      argumentDefinitions: v0 /*: any*/,
-      kind: "Fragment",
-      metadata: null,
-      name: "CharacterQuery",
-      selections: [
-        {
-          alias: null,
-          args: v1 /*: any*/,
-          concreteType: "Character",
-          kind: "LinkedField",
-          name: "character",
-          plural: false,
-          selections: [v2 /*: any*/, v3 /*: any*/],
-          storageKey: null,
-        },
-      ],
-      type: "Query",
-      abstractKey: null,
-    },
-    kind: "Request",
-    operation: {
-      argumentDefinitions: v0 /*: any*/,
-      kind: "Operation",
-      name: "CharacterQuery",
-      selections: [
-        {
-          alias: null,
-          args: v1 /*: any*/,
-          concreteType: "Character",
-          kind: "LinkedField",
-          name: "character",
-          plural: false,
-          selections: [
-            v2 /*: any*/,
-            v3 /*: any*/,
-            {
-              alias: null,
-              args: null,
-              kind: "ScalarField",
-              name: "id",
-              storageKey: null,
-            },
-          ],
-          storageKey: null,
-        },
-      ],
-    },
-    params: {
-      cacheID: "ceeb61ac5875e1fb476f4fa4ba5b2919",
-      id: null,
-      metadata: {},
-      name: "CharacterQuery",
-      operationKind: "query",
-      text: "query CharacterQuery(\n  $characterId: ID!\n) {\n  character(id: $characterId) {\n    name\n    image\n    id\n  }\n}\n",
-    },
-  };
-})();
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Character",
+        "kind": "LinkedField",
+        "name": "character",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          (v3/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "id",
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ]
+  },
+  "params": {
+    "cacheID": "ceeb61ac5875e1fb476f4fa4ba5b2919",
+    "id": null,
+    "metadata": {},
+    "name": "CharacterQuery",
+    "operationKind": "query",
+    "text": "query CharacterQuery(\n  $characterId: ID!\n) {\n  character(id: $characterId) {\n    name\n    image\n    id\n  }\n}\n"
+  }
+};
+})());
 
 var include = RescriptRelay.MakeLoadQuery({
-  query: node,
-  convertVariables: convertVariables,
-});
+      query: node,
+      convertVariables: convertVariables
+    });
 
 var load = include.load;
 
@@ -148,12 +151,12 @@ var queryRefToObservable = include.queryRefToObservable;
 var queryRefToPromise = include.queryRefToPromise;
 
 export {
-  Types,
-  Internal,
-  Utils,
-  node,
-  load,
-  queryRefToObservable,
-  queryRefToPromise,
-};
+  Types ,
+  Internal ,
+  Utils ,
+  node ,
+  load ,
+  queryRefToObservable ,
+  queryRefToPromise ,
+}
 /* node Not a pure module */

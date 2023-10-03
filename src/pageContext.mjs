@@ -11,14 +11,14 @@ function PageContext$Provider(props) {
   var pageContext = props.pageContext;
   console.log(202, pageContext);
   return JsxRuntime.jsx("t", {
-    children: props.children,
-    value: pageContext,
-  });
+              children: props.children,
+              value: pageContext
+            });
 }
 
 var Provider = {
   t: t,
-  make: PageContext$Provider,
+  make: PageContext$Provider
 };
 
 function usePageContext(param) {
@@ -27,5 +27,10 @@ function usePageContext(param) {
 
 var empty;
 
-export { empty, context, Provider, usePageContext };
+export {
+  empty ,
+  context ,
+  Provider ,
+  usePageContext ,
+}
 /* context Not a pure module */
