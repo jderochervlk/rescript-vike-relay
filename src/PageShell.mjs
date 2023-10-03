@@ -3,7 +3,7 @@
 import * as React from "react";
 import LogoSvg from "./logo.svg";
 import * as JsxRuntime from "react/jsx-runtime";
-import * as Link$MyRescriptViteApp from "../renderer/Link.mjs";
+import * as Link$MyRescriptViteApp from "./Link.mjs";
 
 import './PageShell.css'
 ;
