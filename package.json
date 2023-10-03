@@ -38,9 +38,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "babel-plugin-relay": "^15.0.0",
     "graphql": "^16.8.1",
-    "relay-compiler": "^15.0.0",
-    "vite-plugin-relay": "^2.0.0"
+    "relay-compiler": "^15.0.0"
   }
 }

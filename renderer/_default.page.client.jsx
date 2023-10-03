@@ -20,7 +20,7 @@ async function render(pageContext) {
   const container = document.getElementById("react-root");
   if (!Page)
     throw new Error(
-      "Client-side render() hook expects pageContext.Page to be defined"
+      "Client-side render() hook expects pageContext.Page to be defined",
     );
   if (pageContext.isHydration) {
     root = hydrateRoot(container, page);

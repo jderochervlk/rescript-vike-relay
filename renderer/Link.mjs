@@ -7,18 +7,16 @@ function Link(props) {
   var context = PageContext$MyRescriptViteApp.usePageContext(undefined);
   console.log(context);
   return JsxRuntime.jsx("a", {
-              children: props.children,
-              className: props.className,
-              style: {
-                cursor: "pointer"
-              },
-              href: props.href
-            });
+    children: props.children,
+    className: props.className,
+    style: {
+      cursor: "pointer",
+    },
+    href: props.href,
+  });
 }
 
 var make = Link;
 
-export {
-  make ,
-}
+export { make };
 /* react/jsx-runtime Not a pure module */

@@ -1,49 +1,45 @@
 {
-    "name": "my-rescript-vite-app",
-    "uncurried": false,
-    "sources": [
-        {
-            "dir": "pages",
-            "subdirs": true
-        },
-        {
-            "dir": "renderer",
-            "subdirs": true
-        },
-        {
-            "dir": "server",
-            "subdirs": true
-        },
-        {
-            "dir": "bindings",
-            "subdirs": true
-        },
-        {
-            "dir": "src",
-            "subdirs": true
-        }
-    ],
-    "package-specs": {
-        "module": "es6",
-        "in-source": true,
-        "suffix": ".mjs"
+  "name": "my-rescript-vite-app",
+  "uncurried": false,
+  "sources": [
+    {
+      "dir": "pages",
+      "subdirs": true
     },
-    "ppx-flags": [
-        "rescript-relay/ppx"
-    ],
-    "jsx": {
-        "version": 4,
-        "mode": "automatic"
+    {
+      "dir": "renderer",
+      "subdirs": true
     },
-    "bs-dependencies": [
-        "@rescript/core",
-        "@rescript/react",
-        "@fattafatta/rescript-jotai",
-        "rescript-relay"
-    ],
-    "namespace": true,
-    "bs-dev-dependencies": [],
-    "bsc-flags": [
-        "-open RescriptCore"
-    ]
+    {
+      "dir": "server",
+      "subdirs": true
+    },
+    {
+      "dir": "bindings",
+      "subdirs": true
+    },
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "es6",
+    "in-source": true,
+    "suffix": ".mjs"
+  },
+  "ppx-flags": ["rescript-relay/ppx"],
+  "jsx": {
+    "version": 4,
+    "mode": "automatic"
+  },
+  "bs-dependencies": [
+    "@rescript/core",
+    "@rescript/react",
+    "@fattafatta/rescript-jotai",
+    "rescript-relay"
+  ],
+  "namespace": true,
+  "bs-dev-dependencies": [],
+  "bsc-flags": ["-open RescriptCore"]
 }

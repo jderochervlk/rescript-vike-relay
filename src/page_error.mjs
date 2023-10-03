@@ -6,32 +6,30 @@ import * as JsxRuntime from "react/jsx-runtime";
 function Page_error(props) {
   if (props.is404) {
     return JsxRuntime.jsxs(React.Fragment, {
-                children: [
-                  JsxRuntime.jsx("h1", {
-                        children: "404 Page Not Found"
-                      }),
-                  JsxRuntime.jsx("p", {
-                        children: "This page could not be found."
-                      })
-                ]
-              });
+      children: [
+        JsxRuntime.jsx("h1", {
+          children: "404 Page Not Found",
+        }),
+        JsxRuntime.jsx("p", {
+          children: "This page could not be found.",
+        }),
+      ],
+    });
   } else {
     return JsxRuntime.jsxs(React.Fragment, {
-                children: [
-                  JsxRuntime.jsx("h1", {
-                        children: "500 Internal Error"
-                      }),
-                  JsxRuntime.jsx("p", {
-                        children: "Something went wrong."
-                      })
-                ]
-              });
+      children: [
+        JsxRuntime.jsx("h1", {
+          children: "500 Internal Error",
+        }),
+        JsxRuntime.jsx("p", {
+          children: "Something went wrong.",
+        }),
+      ],
+    });
   }
 }
 
 var make = Page_error;
 
-export {
-  make ,
-}
+export { make };
 /* react Not a pure module */
