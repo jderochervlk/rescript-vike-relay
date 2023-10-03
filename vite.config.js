@@ -1,5 +1,6 @@
-import react from "@vitejs/plugin-react";
-import ssr from "vike/plugin";
+import react from "@vitejs/plugin-react"
+import ssr from "vike/plugin"
+
 export default {
   plugins: [
     react({
@@ -9,4 +10,4 @@ export default {
       prerender: true,
     }),
   ],
-};
+}
