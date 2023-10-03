@@ -2,27 +2,32 @@ export { render };
 // See https://vike.dev/data-fetching
 export const passToClient = ["pageProps", "urlPathname"];
 
-import ReactDOMServer from "react-dom/server";
+import ReactDOMServer, { renderToString } from "react-dom/server";
 import { make as PageShell } from "../src/PageShell";
 import { escapeInject, dangerouslySkipEscape } from "vike/server";
 import logoUrl from "../src/logo.svg";
 import pkg from "react-relay";
 import { makeEnvironment } from "./RelayEnvironment";
-
+import ssrPrepass from "react-ssr-prepass";
+import { createElement } from 'react'
 const { RelayEnvironmentProvider } = pkg;
+
+async function renderApp(app) {
+  await ssrPrepass(app)
+  return renderToString(app)
+}
 
 async function render(pageContext) {
   const { Page, pageProps } = pageContext;
   // This render() hook only supports SSR, see https://vike.dev/render-modes for how to modify render() to support SPA
   if (!Page)
     throw new Error("My render() hook expects pageContext.Page to be defined");
-  const pageHtml = ReactDOMServer.renderToString(
-    <RelayEnvironmentProvider environment={makeEnvironment()}>
-      <PageShell pageContext={pageContext}>
-        <Page {...pageProps} />
-      </PageShell>
-    </RelayEnvironmentProvider>,
-  );
+
+  const pageHtml = await renderApp(<RelayEnvironmentProvider environment={makeEnvironment()}>
+    <PageShell pageContext={pageContext}>
+      <Page {...pageProps} />
+    </PageShell>
+  </RelayEnvironmentProvider>,)
 
   // See https://vike.dev/head
   const { documentProps } = pageContext.exports;

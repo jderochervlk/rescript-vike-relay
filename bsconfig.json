@@ -28,7 +28,9 @@
     "in-source": true,
     "suffix": ".mjs"
   },
-  "ppx-flags": ["rescript-relay/ppx"],
+  "ppx-flags": [
+    "rescript-relay/ppx"
+  ],
   "jsx": {
     "version": 4,
     "mode": "automatic"
@@ -37,9 +39,12 @@
     "@rescript/core",
     "@rescript/react",
     "@fattafatta/rescript-jotai",
-    "rescript-relay"
+    "rescript-relay",
+    "rescript-webapi"
   ],
   "namespace": true,
   "bs-dev-dependencies": [],
-  "bsc-flags": ["-open RescriptCore"]
+  "bsc-flags": [
+    "-open RescriptCore"
+  ]
 }

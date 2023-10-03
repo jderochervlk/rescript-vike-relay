@@ -31,5 +31,5 @@ async function render(pageContext) {
   }
 }
 
-export const clientRouting = true;
-export const hydrationCanBeAborted = true;
+// export const clientRouting = true;
+// export const hydrationCanBeAborted = true;

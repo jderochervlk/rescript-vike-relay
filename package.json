@@ -26,9 +26,11 @@
     "react-relay": "^15",
     "react-relay-network-modern": "^6.2.2",
     "react-relay-network-modern-ssr": "^1.4.0",
+    "react-ssr-prepass": "^1.5.0",
     "relay-runtime": "^15.0.0",
     "rescript": "11.0.0-beta.2",
     "rescript-relay": "^2",
+    "rescript-webapi": "^0.9.0",
     "sirv": "^2.0.3",
     "vike": "^0.4.142",
     "vite": "^4.4.9"
