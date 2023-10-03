@@ -5,19 +5,17 @@ import * as JsxRuntime from "react/jsx-runtime";
 
 var context = React.createContext(undefined);
 
-var t = context.Provider;
+var p = context.Provider;
 
 function PageContext$Provider(props) {
-  var pageContext = props.pageContext;
-  console.log(202, pageContext);
-  return JsxRuntime.jsx("t", {
+  return JsxRuntime.jsx("p", {
               children: props.children,
-              value: pageContext
+              value: props.pageContext
             });
 }
 
 var Provider = {
-  t: t,
+  p: p,
   make: PageContext$Provider
 };
 

@@ -53,16 +53,12 @@ function Character$Card(props) {
 function Character$Wrapper(props) {
   var id = props.id;
   var match = useLoader(undefined);
-  var cleanup = match[2];
   var load = match[1];
   var queryRef = match[0];
-  React.useEffect((function (param) {
+  React.useMemo((function (param) {
           Curry._4(load, {
                 characterId: id
               }, undefined, undefined, undefined);
-          return (function (param) {
-                    Curry._1(cleanup, undefined);
-                  });
         }), []);
   if (queryRef !== undefined) {
     return JsxRuntime.jsx(Character$Card, {

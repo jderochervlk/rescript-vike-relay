@@ -31,9 +31,8 @@ module Wrapper = {
   @react.component
   let make = (~id: string) => {
     let (queryRef, load, cleanup) = Query.useLoader()
-    React.useEffect0(() => {
+    React.useMemo0(() => {
       let _ = load(~variables={characterId: id}, ())
-      Some(() => cleanup())
     })
     switch queryRef {
     | Some(queryRef) => <Card id queryRef />

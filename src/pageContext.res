@@ -8,11 +8,10 @@ let empty: option<{.}> = None
 let context: React.Context.t<option<{.}>> = React.createContext(empty)
 
 module Provider = {
-  let t = React.Context.provider(context)
+  let p = React.Context.provider(context)
   @react.component
   let make = (~pageContext, ~children) => {
-    Console.log2(202, pageContext)
-    <t value={pageContext}> {children} </t>
+    <p value={pageContext}> {children} </p>
   }
 }
 

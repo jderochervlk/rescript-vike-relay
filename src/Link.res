@@ -2,8 +2,6 @@
 let make = (~className, ~href, ~children) => {
   let context = PageContext.usePageContext()
 
-  Console.log(context)
-
   let isActive = false
 
   // let (state, _) = PageState.useAtom()

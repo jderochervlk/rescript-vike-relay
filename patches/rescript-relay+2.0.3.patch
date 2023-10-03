@@ -33,12 +33,12 @@ index 0000000..e41b2a7
 +/home/josh/Dev/rescript-vike/node_modules/rescript/linux/rescript.exe	0x1.9470c8d9c0cdfp+30
 diff --git a/node_modules/rescript-relay/lib/bs/.compiler.log b/node_modules/rescript-relay/lib/bs/.compiler.log
 new file mode 100644
-index 0000000..15e5128
+index 0000000..688ddb5
 --- /dev/null
 +++ b/node_modules/rescript-relay/lib/bs/.compiler.log
 @@ -0,0 +1,2 @@
-+#Start(1696348555889)
-+#Done(1696348555890)
++#Start(1696356927892)
++#Done(1696356927892)
 diff --git a/node_modules/rescript-relay/lib/bs/.ninja_log b/node_modules/rescript-relay/lib/bs/.ninja_log
 new file mode 100644
 index 0000000..78d3891
@@ -542,12 +542,12 @@ index 0000000..8ed2e3a
 Binary files /dev/null and b/node_modules/rescript-relay/lib/bs/src/RescriptRelay_Subscriptions.iast differ
 diff --git a/node_modules/rescript-relay/lib/ocaml/.compiler.log b/node_modules/rescript-relay/lib/ocaml/.compiler.log
 new file mode 100644
-index 0000000..3aca3a7
+index 0000000..1b143f7
 --- /dev/null
 +++ b/node_modules/rescript-relay/lib/ocaml/.compiler.log
 @@ -0,0 +1,2 @@
-+#Start(1696348555890)
-+#Done(1696348555890)
++#Start(1696356927893)
++#Done(1696356927893)
 diff --git a/node_modules/rescript-relay/lib/ocaml/.ninja_log b/node_modules/rescript-relay/lib/ocaml/.ninja_log
 new file mode 100644
 index 0000000..b828a13
@@ -4312,7 +4312,7 @@ index 0000000..b72035f
 +/* react Not a pure module */
 diff --git a/node_modules/rescript-relay/src/RescriptRelay_Query.mjs b/node_modules/rescript-relay/src/RescriptRelay_Query.mjs
 new file mode 100644
-index 0000000..3820e27
+index 0000000..d722e4c
 --- /dev/null
 +++ b/node_modules/rescript-relay/src/RescriptRelay_Query.mjs
 @@ -0,0 +1,87 @@
@@ -4322,7 +4322,7 @@ index 0000000..3820e27
 +import * as React from "react";
 +import * as Caml_option from "rescript/lib/es6/caml_option.js";
 +import * as Js_promise2 from "rescript/lib/es6/js_promise2.js";
-+import * as ReactRelay from "react-relay";
++import ReactRelay from "react-relay";
 +import * as RelayRuntime from "relay-runtime";
 +import * as RescriptRelay_Internal from "./RescriptRelay_Internal.mjs";
 +
