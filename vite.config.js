@@ -1,6 +1,6 @@
-import react from "@vitejs/plugin-react";
-import ssr from "vike/plugin";
-import relay from "vite-plugin-relay";
+import react from "@vitejs/plugin-react"
+import ssr from "vike/plugin"
+
 export default {
   plugins: [
     react({
@@ -9,6 +9,5 @@ export default {
     ssr({
       prerender: true,
     }),
-    // relay,
   ],
-};
+}

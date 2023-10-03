@@ -26,12 +26,12 @@ export const makeEnvironment = () => {
               logger: (name, req) => {
                 console.info(
                   `[RELAY] ${name}\n\t* variables: ${JSON.stringify(
-                    req.variables
-                  )}`
+                    req.variables,
+                  )}`,
                 );
               },
             }),
-      ].filter((middleware) => !!middleware)
+      ].filter((middleware) => !!middleware),
     ),
   });
 };

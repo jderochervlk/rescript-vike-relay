@@ -21,7 +21,7 @@ async function render(pageContext) {
       <PageShell pageContext={pageContext}>
         <Page {...pageProps} />
       </PageShell>
-    </RelayEnvironmentProvider>
+    </RelayEnvironmentProvider>,
   );
 
   // See https://vike.dev/head
