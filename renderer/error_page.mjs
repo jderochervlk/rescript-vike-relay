@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as JsxRuntime from "react/jsx-runtime";
 
-function Page_error(props) {
+function Error_page(props) {
   if (props.is404) {
     return JsxRuntime.jsxs(React.Fragment, {
                 children: [
@@ -29,7 +29,7 @@ function Page_error(props) {
   }
 }
 
-var make = Page_error;
+var make = Error_page;
 
 export {
   make ,

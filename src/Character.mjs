@@ -54,11 +54,11 @@ function Character$Card(props) {
     
   }
   return JsxRuntime.jsx("p", {
-              children: "We couldn't find a character details for id " + props.id
+              children: "We couldn't find character details for id " + props.id
             });
 }
 
-function Character$Wrapper(props) {
+function Character(props) {
   var id = props.id;
   var match = useLoader(undefined);
   var cleanup = match[2];
@@ -87,18 +87,6 @@ function Character$Wrapper(props) {
                 }
               });
   }
-}
-
-function Character(props) {
-  var id = props.id;
-  return JsxRuntime.jsx(React.Suspense, {
-              children: Caml_option.some(JsxRuntime.jsx(Character$Wrapper, {
-                        id: id
-                      })),
-              fallback: Caml_option.some(JsxRuntime.jsx("div", {
-                        "data-testid": id
-                      }, id))
-            });
 }
 
 var make = Character;
