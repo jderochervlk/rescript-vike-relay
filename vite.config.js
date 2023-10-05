@@ -8,7 +8,6 @@ export default {
     }),
     ssr({
       prerender: true,
-      
     }),
   ],
 }

@@ -31,8 +31,10 @@ module Wrapper = {
   @react.component
   let make = (~id: string) => {
     let (queryRef, load, cleanup) = Query.useLoader()
-    React.useEffect0(() => {
+    let _ = React.useMemo0(() => {
       load(~variables={characterId: id}, ())
+    })
+    React.useEffect0(() => {
       Some(() => cleanup())
     })
     switch queryRef {
@@ -44,6 +46,6 @@ module Wrapper = {
 
 @react.component
 let make = (~id) =>
-  <React.Suspense>
+  <React.Suspense fallback={<div dataTestId={id} key={id} />}>
     <Wrapper id />
   </React.Suspense>

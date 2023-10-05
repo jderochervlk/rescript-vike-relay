@@ -10,6 +10,8 @@ import pkg from "react-relay";
 import { makeEnvironment } from "./RelayEnvironment";
 import ssrPrepass from "react-ssr-prepass";
 import { createElement } from 'react'
+import RelayServerSSR from "react-relay-network-modern-ssr/lib/server";
+import { Environment, Network, RecordSource, Store } from "relay-runtime";
 const { RelayEnvironmentProvider } = pkg;
 
 async function renderApp(app) {
@@ -23,11 +25,32 @@ async function render(pageContext) {
   if (!Page)
     throw new Error("My render() hook expects pageContext.Page to be defined");
 
-  const pageHtml = await renderApp(<RelayEnvironmentProvider environment={makeEnvironment()}>
-    <PageShell pageContext={pageContext}>
-      <Page {...pageProps} />
-    </PageShell>
-  </RelayEnvironmentProvider>,)
+  const relayServerSSR = new RelayServerSSR()
+
+  await renderApp(
+    <RelayEnvironmentProvider environment={makeEnvironment(relayServerSSR)}>
+      <PageShell pageContext={pageContext}>
+        <Page {...pageProps} />
+      </PageShell>
+    </RelayEnvironmentProvider>
+  )
+
+  let relayData = await relayServerSSR.getCache()
+
+  const source = new RecordSource();
+  const store = new Store(source);
+
+  console.log(relayData)
+
+  let pageHtml = await renderApp(
+    <RelayEnvironmentProvider environment={new Environment({
+      network: Network.create(() => relayData[0][1]),
+      store
+    })}>
+      <PageShell pageContext={pageContext}>
+        <Page {...pageProps} />
+      </PageShell>
+    </RelayEnvironmentProvider>)
 
   // See https://vike.dev/head
   const { documentProps } = pageContext.exports;

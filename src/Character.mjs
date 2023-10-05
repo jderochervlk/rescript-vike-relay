@@ -56,10 +56,12 @@ function Character$Wrapper(props) {
   var cleanup = match[2];
   var load = match[1];
   var queryRef = match[0];
-  React.useEffect((function (param) {
+  React.useMemo((function (param) {
           Curry._4(load, {
                 characterId: id
               }, undefined, undefined, undefined);
+        }), []);
+  React.useEffect((function (param) {
           return (function (param) {
                     Curry._1(cleanup, undefined);
                   });
@@ -75,10 +77,14 @@ function Character$Wrapper(props) {
 }
 
 function Character(props) {
+  var id = props.id;
   return JsxRuntime.jsx(React.Suspense, {
               children: Caml_option.some(JsxRuntime.jsx(Character$Wrapper, {
-                        id: props.id
-                      }))
+                        id: id
+                      })),
+              fallback: Caml_option.some(JsxRuntime.jsx("div", {
+                        "data-testid": id
+                      }, id))
             });
 }
 
