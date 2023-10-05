@@ -1,17 +1,16 @@
 export { render };
 // See https://vike.dev/data-fetching
 export const passToClient = ["pageProps", "urlPathname"];
+import 'react-loading-skeleton/dist/skeleton.css'
 
-import ReactDOMServer, { renderToString } from "react-dom/server";
-import { make as PageShell } from "../src/PageShell";
-import { escapeInject, dangerouslySkipEscape } from "vike/server";
-import logoUrl from "../src/logo.svg";
+import { renderToString } from "react-dom/server";
 import pkg from "react-relay";
-import { makeEnvironment } from "./RelayEnvironment";
-import ssrPrepass from "react-ssr-prepass";
-import { createElement } from 'react'
 import RelayServerSSR from "react-relay-network-modern-ssr/lib/server";
-import { Environment, Network, RecordSource, Store } from "relay-runtime";
+import ssrPrepass from "react-ssr-prepass";
+import { dangerouslySkipEscape, escapeInject } from "vike/server";
+import { make as PageShell } from "../src/PageShell";
+import logoUrl from "../src/logo.svg";
+import { makeEnvironment } from "./RelayEnvironment";
 const { RelayEnvironmentProvider } = pkg;
 
 async function renderApp(app) {
@@ -27,7 +26,7 @@ async function render(pageContext) {
 
   const relayServerSSR = new RelayServerSSR()
 
-  await renderApp(
+  let pageHtml = await renderApp(
     <RelayEnvironmentProvider environment={makeEnvironment(relayServerSSR)}>
       <PageShell pageContext={pageContext}>
         <Page {...pageProps} />
@@ -35,24 +34,6 @@ async function render(pageContext) {
     </RelayEnvironmentProvider>
   )
 
-  let relayData = await relayServerSSR.getCache()
-
-  const source = new RecordSource();
-  const store = new Store(source);
-
-  console.log(relayData)
-
-  let pageHtml = await renderApp(
-    <RelayEnvironmentProvider environment={new Environment({
-      network: Network.create(() => relayData[0][1]),
-      store
-    })}>
-      <PageShell pageContext={pageContext}>
-        <Page {...pageProps} />
-      </PageShell>
-    </RelayEnvironmentProvider>)
-
-  // See https://vike.dev/head
   const { documentProps } = pageContext.exports;
   const title = (documentProps && documentProps.title) || "Vite SSR app";
   const desc =

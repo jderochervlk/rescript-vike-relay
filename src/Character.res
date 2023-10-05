@@ -11,18 +11,13 @@ module Card = {
   @react.component
   let make = (~id, ~queryRef) => {
     let data = Query.usePreloaded(~queryRef)
-
-    switch data.character {
-    | Some(character) =>
-      switch (character.name, character.image) {
-      | (Some(name), Some(image)) =>
-        <div>
-          <h2> {name->React.string} </h2>
-          <img src=image />
-        </div>
-      | _ => <p> {"No name found"->React.string} </p>
-      }
-    | None => <p> {`We couldn't find a character with an id of ${id}`->React.string} </p>
+    switch data.character->Option.map(c => (c.name, c.image)) {
+    | Some((Some(name), Some(image))) =>
+      <div>
+        <h2> {name->React.string} </h2>
+        <img src=image />
+      </div>
+    | _ => <p> {`We couldn't find a character details for id ${id}`->React.string} </p>
     }
   }
 }
@@ -39,7 +34,7 @@ module Wrapper = {
     })
     switch queryRef {
     | Some(queryRef) => <Card id queryRef />
-    | None => React.null
+    | None => <LoadingSkeleton count=1 style={height: "45px"} />
     }
   }
 }

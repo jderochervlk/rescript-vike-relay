@@ -23,6 +23,7 @@
     "jotai": "^2.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loading-skeleton": "^3.3.1",
     "react-relay": "^15",
     "react-relay-network-modern": "^6.2.2",
     "react-relay-network-modern-ssr": "file:.yalc/react-relay-network-modern-ssr",
