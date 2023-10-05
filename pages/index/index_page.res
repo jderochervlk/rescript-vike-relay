@@ -1,7 +1,7 @@
 @react.component
 let make = () => {
   <React.Fragment>
-    <h1> {React.string("Welcome")} </h1>
+    <h1 className="text-2xl"> {React.string("Welcome")} </h1>
     {React.string("This page is:")}
     <ul>
       <li> {React.string("Rendered to HTML.")} </li>

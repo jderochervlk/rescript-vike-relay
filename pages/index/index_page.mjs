@@ -8,7 +8,8 @@ function Index_page(props) {
   return JsxRuntime.jsxs(React.Fragment, {
               children: [
                 JsxRuntime.jsx("h1", {
-                      children: "Welcome"
+                      children: "Welcome",
+                      className: "text-2xl"
                     }),
                 "This page is:",
                 JsxRuntime.jsxs("ul", {
