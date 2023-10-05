@@ -6,6 +6,8 @@ import {
   retryMiddleware,
   errorMiddleware,
   loggerMiddleware,
+  cacheMiddleware,
+  batchMiddleware,
 } from "react-relay-network-modern/lib/index.js";
 
 export const makeEnvironment = () => {
@@ -15,6 +17,8 @@ export const makeEnvironment = () => {
     }),
     network: new RelayNetworkLayer(
       [
+        batchMiddleware(),
+        cacheMiddleware(),
         urlMiddleware({
           url: `https://rickandmortyapi.com/graphql`,
         }),

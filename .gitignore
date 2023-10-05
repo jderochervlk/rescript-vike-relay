@@ -2,3 +2,5 @@ node_modules/
 dist/
 lib
 src/**/*.mjs
+.yalc
+yalc.lock
