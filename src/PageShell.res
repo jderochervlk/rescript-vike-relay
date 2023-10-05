@@ -62,7 +62,12 @@ module Layout = {
 }
 
 @react.component
-let make = (~pageContext, ~children) => {
+let make = (~pageContext, ~children, ~url) => {
+  let (_, setUrl) = Url.useAtom()
+  React.useEffect0(() => {
+    let _ = setUrl(_ => url)
+    None
+  })
   <React.StrictMode>
     <Layout>
       <Sidebar>

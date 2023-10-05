@@ -1,6 +1,6 @@
 export { render };
 // See https://vike.dev/data-fetching
-export const passToClient = ["pageProps", "urlPathname"];
+export const passToClient = ["pageProps", "urlPathname", "urlPagename"];
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { renderToString } from "react-dom/server";
