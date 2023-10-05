@@ -1,51 +1,21 @@
 export { render };
 
-import { hydrateRoot, createRoot } from "react-dom/client";
-import { make as PageShell } from "../src/PageShell";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import 'react-loading-skeleton/dist/skeleton.css';
 import { RelayEnvironmentProvider } from "react-relay";
-import { RelayNetworkLayer, batchMiddleware, cacheMiddleware, errorMiddleware, loggerMiddleware, retryMiddleware, urlMiddleware } from 'react-relay-network-modern';
 import RelayClientSSR from 'react-relay-network-modern-ssr/lib/client';
-import { Environment, RecordSource, Store } from "relay-runtime";
-import 'react-loading-skeleton/dist/skeleton.css'
+import { make as PageShell } from "../src/PageShell";
+import { makeEnvironment } from "./RelayEnvironment";
 
 const relayClientSSR = new RelayClientSSR(window.__RELAY_BOOTSTRAP_DATA__);
 
-const network = new RelayNetworkLayer([
-  relayClientSSR.getMiddleware({
-    lookup: true // Will preserve cache rather than purge after mount.
-  }),
-  cacheMiddleware(),
-  batchMiddleware(),
-  urlMiddleware({
-    url: `https://rickandmortyapi.com/graphql`,
-  }),
-  retryMiddleware(),
-  process.env.NODE_ENV !== "development" ? undefined : errorMiddleware(),
-  process.env.NODE_ENV !== "development"
-    ? undefined
-    : loggerMiddleware({
-      logger: (name, req) => {
-        console.info(
-          `[RELAY] ${name}\n\t* variables: ${JSON.stringify(
-            req.variables,
-          )}`,
-        );
-      },
-    }),
-].filter((middleware) => !!middleware))
 let root;
 // This render() hook only supports SSR, see https://vike.dev/render-modes for how to modify render() to support SPA
 async function render(pageContext) {
   const { Page, pageProps } = pageContext;
 
-  const source = new RecordSource();
-  const store = new Store(source);
-
   const page = (
-    <RelayEnvironmentProvider environment={new Environment({
-      store,
-      network
-    })}>
+    <RelayEnvironmentProvider environment={makeEnvironment(relayClientSSR)}>
       <PageShell pageContext={pageContext}>
         <Page {...pageProps} />
       </PageShell>
