@@ -13,14 +13,18 @@ function About_page(props) {
                 JsxRuntime.jsx("h1", {
                       children: "About"
                     }),
-                JsxRuntime.jsx(Character$MyRescriptViteApp.make, {
-                      id: "1"
-                    }),
-                JsxRuntime.jsx(Character$MyRescriptViteApp.make, {
-                      id: "2"
-                    }),
-                JsxRuntime.jsx(Character$MyRescriptViteApp.make, {
-                      id: "3"
+                JsxRuntime.jsxs(React.Suspense, {
+                      children: [
+                        JsxRuntime.jsx(Character$MyRescriptViteApp.make, {
+                              id: "1"
+                            }),
+                        JsxRuntime.jsx(Character$MyRescriptViteApp.make, {
+                              id: "2"
+                            }),
+                        JsxRuntime.jsx(Character$MyRescriptViteApp.make, {
+                              id: "3"
+                            })
+                      ]
                     })
               ]
             });

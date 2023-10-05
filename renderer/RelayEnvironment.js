@@ -7,18 +7,22 @@ import {
   errorMiddleware,
   loggerMiddleware,
   cacheMiddleware,
-  batchMiddleware,
+  batchMiddleware
 } from "react-relay-network-modern/lib/index.js";
+import RelayServerSSR from 'react-relay-network-modern-ssr/lib/server';
 
-export const makeEnvironment = () => {
+
+
+export const makeEnvironment = (relayServerSSR) => {
   return new Environment({
     store: new Store(new RecordSource(), {
       gcReleaseBufferSize: 10,
     }),
     network: new RelayNetworkLayer(
       [
-        batchMiddleware(),
+        relayServerSSR?.getMiddleware(),
         cacheMiddleware(),
+        batchMiddleware(),
         urlMiddleware({
           url: `https://rickandmortyapi.com/graphql`,
         }),

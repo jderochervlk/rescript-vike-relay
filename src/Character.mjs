@@ -3,8 +3,10 @@
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
+import * as Core__Option from "@rescript/core/src/Core__Option.mjs";
 import * as JsxRuntime from "react/jsx-runtime";
 import * as RescriptRelay_Query from "rescript-relay/src/RescriptRelay_Query.mjs";
+import ReactLoadingSkeleton from "react-loading-skeleton";
 import * as CharacterQuery_graphql$MyRescriptViteApp from "./__generated__/CharacterQuery_graphql.mjs";
 
 var convertVariables = CharacterQuery_graphql$MyRescriptViteApp.Internal.convertVariables;
@@ -25,41 +27,49 @@ function usePreloaded(param) {
 
 function Character$Card(props) {
   var data = usePreloaded(props.queryRef);
-  var character = data.character;
-  if (character === undefined) {
-    return JsxRuntime.jsx("p", {
-                children: "We couldn't find a character with an id of " + props.id
-              });
-  }
-  var match = character.name;
-  var match$1 = character.image;
-  if (match !== undefined && match$1 !== undefined) {
-    return JsxRuntime.jsxs("div", {
-                children: [
-                  JsxRuntime.jsx("h2", {
-                        children: match
-                      }),
-                  JsxRuntime.jsx("img", {
-                        src: match$1
-                      })
-                ]
-              });
+  var match = Core__Option.map(data.character, (function (c) {
+          return [
+                  c.name,
+                  c.image
+                ];
+        }));
+  if (match !== undefined) {
+    var name = match[0];
+    if (name !== undefined) {
+      var image = match[1];
+      if (image !== undefined) {
+        return JsxRuntime.jsxs("div", {
+                    children: [
+                      JsxRuntime.jsx("h2", {
+                            children: name
+                          }),
+                      JsxRuntime.jsx("img", {
+                            src: image
+                          })
+                    ]
+                  });
+      }
+      
+    }
+    
   }
   return JsxRuntime.jsx("p", {
-              children: "No name found"
+              children: "We couldn't find character details for id " + props.id
             });
 }
 
-function Character$Wrapper(props) {
+function Character(props) {
   var id = props.id;
   var match = useLoader(undefined);
   var cleanup = match[2];
   var load = match[1];
   var queryRef = match[0];
-  React.useEffect((function (param) {
+  React.useMemo((function (param) {
           Curry._4(load, {
                 characterId: id
               }, undefined, undefined, undefined);
+        }), []);
+  React.useEffect((function (param) {
           return (function (param) {
                     Curry._1(cleanup, undefined);
                   });
@@ -70,16 +80,13 @@ function Character$Wrapper(props) {
                 queryRef: Caml_option.valFromOption(queryRef)
               });
   } else {
-    return null;
+    return JsxRuntime.jsx(ReactLoadingSkeleton, {
+                count: 1,
+                style: {
+                  height: "45px"
+                }
+              });
   }
-}
-
-function Character(props) {
-  return JsxRuntime.jsx(React.Suspense, {
-              children: Caml_option.some(JsxRuntime.jsx(Character$Wrapper, {
-                        id: props.id
-                      }))
-            });
 }
 
 var make = Character;

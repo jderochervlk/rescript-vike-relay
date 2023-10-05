@@ -1,15 +1,16 @@
 export { render };
 // See https://vike.dev/data-fetching
-export const passToClient = ["pageProps", "urlPathname"];
+export const passToClient = ["pageProps", "urlPathname", "urlPagename"];
+import 'react-loading-skeleton/dist/skeleton.css'
 
-import ReactDOMServer, { renderToString } from "react-dom/server";
-import { make as PageShell } from "../src/PageShell";
-import { escapeInject, dangerouslySkipEscape } from "vike/server";
-import logoUrl from "../src/logo.svg";
+import { renderToString } from "react-dom/server";
 import pkg from "react-relay";
-import { makeEnvironment } from "./RelayEnvironment";
+import RelayServerSSR from "react-relay-network-modern-ssr/lib/server";
 import ssrPrepass from "react-ssr-prepass";
-import { createElement } from 'react'
+import { dangerouslySkipEscape, escapeInject } from "vike/server";
+import { make as PageShell } from "../src/PageShell";
+import logoUrl from "../src/logo.svg";
+import { makeEnvironment } from "./RelayEnvironment";
 const { RelayEnvironmentProvider } = pkg;
 
 async function renderApp(app) {
@@ -23,13 +24,16 @@ async function render(pageContext) {
   if (!Page)
     throw new Error("My render() hook expects pageContext.Page to be defined");
 
-  const pageHtml = await renderApp(<RelayEnvironmentProvider environment={makeEnvironment()}>
-    <PageShell pageContext={pageContext}>
-      <Page {...pageProps} />
-    </PageShell>
-  </RelayEnvironmentProvider>,)
+  const relayServerSSR = new RelayServerSSR()
 
-  // See https://vike.dev/head
+  let pageHtml = await renderApp(
+    <RelayEnvironmentProvider environment={makeEnvironment(relayServerSSR)}>
+      <PageShell pageContext={pageContext}>
+        <Page {...pageProps} />
+      </PageShell>
+    </RelayEnvironmentProvider>
+  )
+
   const { documentProps } = pageContext.exports;
   const title = (documentProps && documentProps.title) || "Vite SSR app";
   const desc =
