@@ -1,6 +1,3 @@
-export { render };
-// See https://vike.dev/data-fetching
-export const passToClient = ["pageProps", "urlPathname", "urlPagename"];
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { renderToString } from "react-dom/server";
@@ -11,15 +8,21 @@ import { dangerouslySkipEscape, escapeInject } from "vike/server";
 import { make as PageShell } from "../src/PageShell";
 import logoUrl from "../src/logo.svg";
 import { makeEnvironment } from "./RelayEnvironment";
+import serialize from 'serialize-javascript';
+
 const { RelayEnvironmentProvider } = pkg;
+
+
+// See https://vike.dev/data-fetching
+export const passToClient = ["pageProps", "urlPagename", "routeParams"];
 
 async function renderApp(app) {
   await ssrPrepass(app)
   return renderToString(app)
 }
 
-async function render(pageContext) {
-  const { Page, pageProps } = pageContext;
+export async function render(pageContext) {
+  const { Page, pageProps, routeParams } = pageContext;
   // This render() hook only supports SSR, see https://vike.dev/render-modes for how to modify render() to support SPA
   if (!Page)
     throw new Error("My render() hook expects pageContext.Page to be defined");
@@ -29,7 +32,7 @@ async function render(pageContext) {
   let pageHtml = await renderApp(
     <RelayEnvironmentProvider environment={makeEnvironment(relayServerSSR)}>
       <PageShell pageContext={pageContext}>
-        <Page {...pageProps} />
+        <Page {...pageProps} routeParams={routeParams} />
       </PageShell>
     </RelayEnvironmentProvider>
   )
@@ -39,6 +42,8 @@ async function render(pageContext) {
   const desc =
     (documentProps && documentProps.description) || "App using Vite + Vike";
 
+  const cache = await relayServerSSR.getCache()
+
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -46,6 +51,7 @@ async function render(pageContext) {
         <link rel="icon" href="${logoUrl}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="${desc}" />
+        <script>window.__RELAY_BOOTSTRAP_DATA__=${JSON.stringify(cache)}</script>
         <title>${title}</title>
       </head>
       <body>
