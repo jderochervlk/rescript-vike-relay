@@ -1,4 +1,4 @@
-/* @sourceLoc page__character_server.res */
+/* @sourceLoc Character.res */
 /* @generated */
 %%raw("/* @generated */")
 module Types = {
@@ -120,7 +120,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "pageCharacterServerQuery",
+    "name": "CharacterListQuery",
     "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
@@ -129,16 +129,16 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "pageCharacterServerQuery",
+    "name": "CharacterListQuery",
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "ceba699b651203255f26f3b915454cdf",
+    "cacheID": "a05895700a3e1eac5944a7dd75d80477",
     "id": null,
     "metadata": {},
-    "name": "pageCharacterServerQuery",
+    "name": "CharacterListQuery",
     "operationKind": "query",
-    "text": "query pageCharacterServerQuery {\n  characters {\n    results {\n      id\n    }\n  }\n}\n"
+    "text": "query CharacterListQuery {\n  characters {\n    results {\n      id\n    }\n  }\n}\n"
   }
 };
 })() `)

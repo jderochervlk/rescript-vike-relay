@@ -1,3 +1,8 @@
+type t = {
+  name: option<string>,
+  image: option<string>,
+}
+
 module Query = %relay(`
   query CharacterQuery($characterId: ID!) {
     character(id: $characterId) {
@@ -5,6 +10,16 @@ module Query = %relay(`
       image
     }
   }
+`)
+
+module ListQuery = %relay(`
+  query CharacterListQuery {
+  characters {
+    results {
+      id
+    }
+  }
+}
 `)
 
 module Card = {

@@ -8,10 +8,17 @@ import * as JsxRuntime from "react/jsx-runtime";
 import * as RescriptRelay_Query from "rescript-relay/src/RescriptRelay_Query.mjs";
 import ReactLoadingSkeleton from "react-loading-skeleton";
 import * as CharacterQuery_graphql$MyRescriptViteApp from "./__generated__/CharacterQuery_graphql.mjs";
+import * as CharacterListQuery_graphql$MyRescriptViteApp from "./__generated__/CharacterListQuery_graphql.mjs";
 
 var convertVariables = CharacterQuery_graphql$MyRescriptViteApp.Internal.convertVariables;
 
 var convertResponse = CharacterQuery_graphql$MyRescriptViteApp.Internal.convertResponse;
+
+var convertWrapRawResponse = CharacterQuery_graphql$MyRescriptViteApp.Internal.convertWrapRawResponse;
+
+function use(param, param$1, param$2, param$3, param$4) {
+  return RescriptRelay_Query.useQuery(convertVariables, CharacterQuery_graphql$MyRescriptViteApp.node, convertResponse, param, param$1, param$2, param$3, param$4);
+}
 
 function useLoader(param) {
   return RescriptRelay_Query.useLoader(convertVariables, CharacterQuery_graphql$MyRescriptViteApp.node, (function (prim) {
@@ -24,6 +31,80 @@ function usePreloaded(param) {
                 return prim;
               }), param);
 }
+
+function $$fetch(param, param$1, param$2, param$3, param$4, param$5) {
+  return RescriptRelay_Query.$$fetch(CharacterQuery_graphql$MyRescriptViteApp.node, convertResponse, convertVariables, param, param$1, param$2, param$3, param$4, param$5);
+}
+
+function fetchPromised(param, param$1, param$2, param$3, param$4) {
+  return RescriptRelay_Query.fetchPromised(CharacterQuery_graphql$MyRescriptViteApp.node, convertResponse, convertVariables, param, param$1, param$2, param$3, param$4);
+}
+
+function retain(param, param$1) {
+  return RescriptRelay_Query.retain(CharacterQuery_graphql$MyRescriptViteApp.node, convertVariables, param, param$1);
+}
+
+var Query = {
+  Operation: undefined,
+  Types: undefined,
+  convertVariables: convertVariables,
+  convertResponse: convertResponse,
+  convertWrapRawResponse: convertWrapRawResponse,
+  use: use,
+  useLoader: useLoader,
+  usePreloaded: usePreloaded,
+  $$fetch: $$fetch,
+  fetchPromised: fetchPromised,
+  retain: retain
+};
+
+var convertVariables$1 = CharacterListQuery_graphql$MyRescriptViteApp.Internal.convertVariables;
+
+var convertResponse$1 = CharacterListQuery_graphql$MyRescriptViteApp.Internal.convertResponse;
+
+var convertWrapRawResponse$1 = CharacterListQuery_graphql$MyRescriptViteApp.Internal.convertWrapRawResponse;
+
+function use$1(param, param$1, param$2, param$3, param$4) {
+  return RescriptRelay_Query.useQuery(convertVariables$1, CharacterListQuery_graphql$MyRescriptViteApp.node, convertResponse$1, param, param$1, param$2, param$3, param$4);
+}
+
+function useLoader$1(param) {
+  return RescriptRelay_Query.useLoader(convertVariables$1, CharacterListQuery_graphql$MyRescriptViteApp.node, (function (prim) {
+                return prim;
+              }), param);
+}
+
+function usePreloaded$1(param) {
+  return RescriptRelay_Query.usePreloaded(CharacterListQuery_graphql$MyRescriptViteApp.node, convertResponse$1, (function (prim) {
+                return prim;
+              }), param);
+}
+
+function $$fetch$1(param, param$1, param$2, param$3, param$4, param$5) {
+  return RescriptRelay_Query.$$fetch(CharacterListQuery_graphql$MyRescriptViteApp.node, convertResponse$1, convertVariables$1, param, param$1, param$2, param$3, param$4, param$5);
+}
+
+function fetchPromised$1(param, param$1, param$2, param$3, param$4) {
+  return RescriptRelay_Query.fetchPromised(CharacterListQuery_graphql$MyRescriptViteApp.node, convertResponse$1, convertVariables$1, param, param$1, param$2, param$3, param$4);
+}
+
+function retain$1(param, param$1) {
+  return RescriptRelay_Query.retain(CharacterListQuery_graphql$MyRescriptViteApp.node, convertVariables$1, param, param$1);
+}
+
+var ListQuery = {
+  Operation: undefined,
+  Types: undefined,
+  convertVariables: convertVariables$1,
+  convertResponse: convertResponse$1,
+  convertWrapRawResponse: convertWrapRawResponse$1,
+  use: use$1,
+  useLoader: useLoader$1,
+  usePreloaded: usePreloaded$1,
+  $$fetch: $$fetch$1,
+  fetchPromised: fetchPromised$1,
+  retain: retain$1
+};
 
 function Character$Card(props) {
   var data = usePreloaded(props.queryRef);
@@ -57,6 +138,10 @@ function Character$Card(props) {
               children: "We couldn't find character details for id " + props.id
             });
 }
+
+var Card = {
+  make: Character$Card
+};
 
 function Character(props) {
   var id = props.id;
@@ -92,6 +177,9 @@ function Character(props) {
 var make = Character;
 
 export {
+  Query ,
+  ListQuery ,
+  Card ,
   make ,
 }
 /* react Not a pure module */
