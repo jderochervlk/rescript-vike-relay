@@ -11,8 +11,6 @@ import {
 } from "react-relay-network-modern/lib/index.js";
 import RelayServerSSR from 'react-relay-network-modern-ssr/lib/server';
 
-
-
 export const makeEnvironment = (relayServerSSR) => {
   return new Environment({
     store: new Store(new RecordSource(), {
@@ -31,14 +29,14 @@ export const makeEnvironment = (relayServerSSR) => {
         process.env.NODE_ENV !== "development"
           ? undefined
           : loggerMiddleware({
-              logger: (name, req) => {
-                console.info(
-                  `[RELAY] ${name}\n\t* variables: ${JSON.stringify(
-                    req.variables,
-                  )}`,
-                );
-              },
-            }),
+            logger: (name, req) => {
+              console.info(
+                `[RELAY] ${name}\n\t* variables: ${JSON.stringify(
+                  req.variables,
+                )}`,
+              );
+            },
+          }),
       ].filter((middleware) => !!middleware),
     ),
   });

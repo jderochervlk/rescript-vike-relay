@@ -7,11 +7,12 @@ import RelayClientSSR from 'react-relay-network-modern-ssr/lib/client';
 import { make as PageShell } from "../src/PageShell";
 import { makeEnvironment } from "./RelayEnvironment";
 
-const relayClientSSR = new RelayClientSSR(window.__RELAY_BOOTSTRAP_DATA__);
 
 let root;
 // This render() hook only supports SSR, see https://vike.dev/render-modes for how to modify render() to support SPA
 async function render(pageContext) {
+  const relayClientSSR = new RelayClientSSR(JSON.parse(window.__RELAY_BOOTSTRAP_DATA__))
+
   const { Page, pageProps, urlPathname } = pageContext;
 
   const page = (
@@ -36,5 +37,5 @@ async function render(pageContext) {
   }
 }
 
-export const clientRouting = true;
+// export const clientRouting = true;
 export const hydrationCanBeAborted = true;
