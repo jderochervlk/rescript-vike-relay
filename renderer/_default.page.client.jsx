@@ -13,7 +13,7 @@ let root;
 async function render(pageContext) {
   const { Page, pageProps, urlPathname, routeParams } = pageContext;
 
-  const relayClientSSR = new RelayClientSSR(JSON.parse(window.__RELAY_BOOTSTRAP_DATA__))
+  const relayClientSSR = new RelayClientSSR(window.__RELAY_BOOTSTRAP_DATA__)
 
   const page = (
     <RelayEnvironmentProvider environment={makeEnvironment(relayClientSSR)}>

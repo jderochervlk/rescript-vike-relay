@@ -14,7 +14,11 @@ const { RelayEnvironmentProvider } = pkg;
 
 
 // See https://vike.dev/data-fetching
-export const passToClient = ["pageProps", "urlPagename", "routeParams"];
+export const passToClient = ["pageProps",
+  "urlPagename",
+  "routeParams",
+  "urlPathname"
+]
 
 async function renderApp(app) {
   await ssrPrepass(app)
@@ -51,7 +55,7 @@ export async function render(pageContext) {
         <link rel="icon" href="${logoUrl}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="${desc}" />
-        <script>window.__RELAY_BOOTSTRAP_DATA__=${JSON.stringify(cache)}</script>
+      
         <title>${title}</title>
         <script>
           window.__RELAY_BOOTSTRAP_DATA__="${serialize(cache)}"

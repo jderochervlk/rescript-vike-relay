@@ -40,11 +40,13 @@
     "@rescript/react",
     "@fattafatta/rescript-jotai",
     "rescript-relay",
-    "rescript-webapi"
+    "rescript-webapi",
+    "rescript-struct"
   ],
   "namespace": true,
   "bs-dev-dependencies": [],
   "bsc-flags": [
-    "-open RescriptCore"
+    "-open RescriptCore",
+    "-open RescriptStruct"
   ]
 }
