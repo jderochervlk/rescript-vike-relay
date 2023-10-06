@@ -53,6 +53,9 @@ export async function render(pageContext) {
         <meta name="description" content="${desc}" />
         <script>window.__RELAY_BOOTSTRAP_DATA__=${JSON.stringify(cache)}</script>
         <title>${title}</title>
+        <script>
+          window.__RELAY_BOOTSTRAP_DATA__="${serialize(cache)}"
+        </script>
       </head>
       <body>
         <div id="react-root">${dangerouslySkipEscape(pageHtml)}</div>
