@@ -1,0 +1,1 @@
+export { make as Page } from './character_page.mjs'

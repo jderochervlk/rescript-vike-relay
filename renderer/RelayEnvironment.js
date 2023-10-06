@@ -42,14 +42,6 @@ export const makeEnvironment = (relayServerSSR) => {
   });
 };
 
-// function createEnv(cache) {
-//   const isServer = typeof window === "undefined";
-
-//   const relaySSRMiddleware = isServer
-//     ? new RelayServerSSR()
-//     : new RelayClientSSR(cache);
-// }
-
 export default new Environment({
   network: Network.create(makeEnvironment()),
   store: new Store(new RecordSource()),

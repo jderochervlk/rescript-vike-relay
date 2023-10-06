@@ -11,14 +11,14 @@ import { makeEnvironment } from "./RelayEnvironment";
 let root;
 // This render() hook only supports SSR, see https://vike.dev/render-modes for how to modify render() to support SPA
 async function render(pageContext) {
-  const relayClientSSR = new RelayClientSSR(JSON.parse(window.__RELAY_BOOTSTRAP_DATA__))
+  const { Page, pageProps, urlPathname, routeParams } = pageContext;
 
-  const { Page, pageProps, urlPathname } = pageContext;
+  const relayClientSSR = new RelayClientSSR(JSON.parse(window.__RELAY_BOOTSTRAP_DATA__))
 
   const page = (
     <RelayEnvironmentProvider environment={makeEnvironment(relayClientSSR)}>
       <PageShell pageContext={pageContext} url={urlPathname}>
-        <Page {...pageProps} />
+        <Page {...pageProps} routeParams={routeParams} />
       </PageShell>
     </RelayEnvironmentProvider>
   );
