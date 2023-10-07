@@ -34,7 +34,6 @@ var Content = {
 };
 
 function About_page(props) {
-  Character$MyRescriptViteApp.ListQuery.use(undefined, undefined, undefined, undefined, undefined);
   return JsxRuntime.jsxs(React.Fragment, {
               children: [
                 JsxRuntime.jsx("h1", {

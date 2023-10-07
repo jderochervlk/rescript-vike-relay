@@ -25,8 +25,6 @@ module Content = {
 
 @react.component
 let make = () => {
-  let t = Character.ListQuery.use(~variables=(), ())
-
   <React.Fragment>
     <h1> {React.string("About")} </h1>
     <React.Suspense>
