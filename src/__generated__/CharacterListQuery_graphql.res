@@ -6,6 +6,7 @@ module Types = {
 
   type rec response_characters_results = {
     @live id: option<string>,
+    name: option<string>,
   }
   and response_characters = {
     results: option<array<option<response_characters_results>>>,
@@ -107,6 +108,13 @@ var v0 = [
             "kind": "ScalarField",
             "name": "id",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "name",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -133,12 +141,12 @@ return {
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "a05895700a3e1eac5944a7dd75d80477",
+    "cacheID": "05e3ec918bc98d2fe6c16c821fe52473",
     "id": null,
     "metadata": {},
     "name": "CharacterListQuery",
     "operationKind": "query",
-    "text": "query CharacterListQuery {\n  characters {\n    results {\n      id\n    }\n  }\n}\n"
+    "text": "query CharacterListQuery {\n  characters {\n    results {\n      id\n      name\n    }\n  }\n}\n"
   }
 };
 })() `)

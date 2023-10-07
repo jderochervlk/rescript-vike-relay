@@ -17,6 +17,7 @@ module ListQuery = %relay(`
   characters {
     results {
       id
+      name
     }
   }
 }
@@ -35,7 +36,7 @@ module Content = {
         <h2> {name->React.string} </h2>
         <img src=image />
       </div>
-    | _ => <p> {`We couldn't find character details for id ${id}`->React.string} </p>
+    | None => <p> {`We couldn't find character details for id ${id}`->React.string} </p>
     }
   }
 }

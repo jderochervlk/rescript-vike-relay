@@ -3,9 +3,12 @@
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import LogoSvg from "./logo.svg";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
+import * as Core__Option from "@rescript/core/src/Core__Option.mjs";
 import * as JsxRuntime from "react/jsx-runtime";
 import * as Url$MyRescriptViteApp from "./url.mjs";
 import * as Link$MyRescriptViteApp from "./Link.mjs";
+import * as Character$MyRescriptViteApp from "./Character.mjs";
 
 import './PageShell.css'
 ;
@@ -28,6 +31,32 @@ function PageShell$Sidebar(props) {
 
 var Sidebar = {
   make: PageShell$Sidebar
+};
+
+function PageShell$Links(props) {
+  var t = Character$MyRescriptViteApp.ListQuery.use(undefined, undefined, undefined, undefined, undefined);
+  var results = Core__Option.flatMap(t.characters, (function (t) {
+          return t.results;
+        }));
+  if (results !== undefined) {
+    return results.map(function (c) {
+                if (c === undefined) {
+                  return null;
+                }
+                var id = Core__Option.getWithDefault(c.id, "-");
+                var name = Core__Option.getWithDefault(c.name, "unknown");
+                return JsxRuntime.jsx(Link$MyRescriptViteApp.make, {
+                            href: "/character/" + id,
+                            children: name
+                          }, "character-details-" + id);
+              });
+  } else {
+    return [];
+  }
+}
+
+var Links = {
+  make: PageShell$Links
 };
 
 function PageShell$Content(props) {
@@ -54,14 +83,14 @@ function PageShell$Logo(props) {
                           height: "64px",
                           src: logoSvg,
                           width: "64px"
-                        }),
+                        }, "logo-svg"),
                     href: "/"
                   }),
               style: {
                 marginTop: "20px",
                 marginBottom: "10px"
               }
-            });
+            }, "site-logo");
 }
 
 var Logo = {
@@ -98,23 +127,16 @@ function PageShell(props) {
                       JsxRuntime.jsxs(PageShell$Sidebar, {
                             children: [
                               JsxRuntime.jsx(PageShell$Logo, {}),
-                              JsxRuntime.jsx(Link$MyRescriptViteApp.make, {
-                                    className: "navitem",
-                                    href: "/",
-                                    children: "Home"
-                                  }),
-                              JsxRuntime.jsx(Link$MyRescriptViteApp.make, {
-                                    className: "navitem",
-                                    href: "/about",
-                                    children: "About"
+                              JsxRuntime.jsx(React.Suspense, {
+                                    children: Caml_option.some(JsxRuntime.jsx(PageShell$Links, {}))
                                   })
                             ]
-                          }),
+                          }, "site-sidebar"),
                       JsxRuntime.jsx(PageShell$Content, {
                             children: props.children
                           })
                     ]
-                  })
+                  }, "site-layout")
             });
 }
 
@@ -123,6 +145,7 @@ var make = PageShell;
 export {
   logoSvg ,
   Sidebar ,
+  Links ,
   Content ,
   Logo ,
   Layout ,

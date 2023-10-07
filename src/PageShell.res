@@ -18,6 +18,32 @@ module Sidebar = {
   }
 }
 
+module Links = {
+  @react.component
+  let make = () => {
+    let t = Character.ListQuery.use(~variables=(), ())
+
+    {
+      switch t.characters->Option.flatMap(t => t.results) {
+      | Some(results) =>
+        results->Array.map(c =>
+          switch c {
+          | Some(c) => {
+              let id = c.id->Option.getWithDefault("-")
+              let name = c.name->Option.getWithDefault("unknown")
+              <Link key={`character-details-${id}`} href={`/character/${id}`}>
+                {name->React.string}
+              </Link>
+            }
+          | None => React.null
+          }
+        )
+      | None => []
+      }
+    }->React.array
+  }
+}
+
 module Content = {
   @react.component
   let make = (~children) => {
@@ -37,12 +63,13 @@ module Logo = {
   @react.component
   let make = () =>
     <div
+      key="site-logo"
       style={{
         marginTop: "20px",
         marginBottom: "10px",
       }}>
       <a href="/">
-        <img src={logoSvg} height="64px" width={"64px"} alt="logo" />
+        <img src={logoSvg} height="64px" width={"64px"} alt="logo" key="logo-svg" />
       </a>
     </div>
 }
@@ -69,11 +96,12 @@ let make = (~children, ~url) => {
     None
   })
   <React.StrictMode>
-    <Layout>
-      <Sidebar>
+    <Layout key="site-layout">
+      <Sidebar key="site-sidebar">
         <Logo />
-        <Link className="navitem" href="/"> {React.string("Home")} </Link>
-        <Link className="navitem" href="/about"> {React.string("About")} </Link>
+        <React.Suspense>
+          <Links />
+        </React.Suspense>
       </Sidebar>
       <Content> {children} </Content>
     </Layout>
