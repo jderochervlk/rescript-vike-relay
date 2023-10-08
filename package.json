@@ -10,7 +10,8 @@
     "res:dev": "rescript build -w -with-deps",
     "relay:build": "rescript-relay-compiler",
     "relay:dev": "rescript-relay-compiler --watch",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "start": "concurrently --prefix -c red,blue,green --names ReScript,Relay,Vite \"npm run res:dev\" \"npm run relay:dev\" \"npm run dev\""
   },
   "dependencies": {
     "@fattafatta/rescript-jotai": "^0.3.0",
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.1",
     "graphql": "^16.8.1",
     "patch-package": "^8.0.0",
     "postcss": "^8.4.31",

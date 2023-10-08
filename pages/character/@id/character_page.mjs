@@ -6,12 +6,10 @@ import * as JsxRuntime from "react/jsx-runtime";
 import * as Character$MyRescriptViteApp from "../../../src/Character.mjs";
 
 function Character_page(props) {
-  return JsxRuntime.jsx("div", {
-              children: JsxRuntime.jsx(React.Suspense, {
-                    children: Caml_option.some(JsxRuntime.jsx(Character$MyRescriptViteApp.make, {
-                              id: props.routeParams.id
-                            }))
-                  })
+  return JsxRuntime.jsx(React.Suspense, {
+              children: Caml_option.some(JsxRuntime.jsx(Character$MyRescriptViteApp.make, {
+                        id: props.routeParams.id
+                      }))
             });
 }
 

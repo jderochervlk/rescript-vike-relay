@@ -29,10 +29,6 @@ function PageShell$Sidebar(props) {
             });
 }
 
-var Sidebar = {
-  make: PageShell$Sidebar
-};
-
 function PageShell$Links(props) {
   var t = Character$MyRescriptViteApp.ListQuery.use(undefined, undefined, undefined, undefined, undefined);
   var results = Core__Option.flatMap(t.characters, (function (t) {
@@ -55,10 +51,6 @@ function PageShell$Links(props) {
   }
 }
 
-var Links = {
-  make: PageShell$Links
-};
-
 function PageShell$Content(props) {
   return JsxRuntime.jsx("div", {
               children: props.children,
@@ -70,10 +62,6 @@ function PageShell$Content(props) {
               }
             });
 }
-
-var Content = {
-  make: PageShell$Content
-};
 
 function PageShell$Logo(props) {
   return JsxRuntime.jsx("div", {
@@ -93,10 +81,6 @@ function PageShell$Logo(props) {
             }, "site-logo");
 }
 
-var Logo = {
-  make: PageShell$Logo
-};
-
 function PageShell$Layout(props) {
   return JsxRuntime.jsx("div", {
               children: props.children,
@@ -107,10 +91,6 @@ function PageShell$Layout(props) {
               }
             });
 }
-
-var Layout = {
-  make: PageShell$Layout
-};
 
 function PageShell(props) {
   var url = props.url;
@@ -143,12 +123,6 @@ function PageShell(props) {
 var make = PageShell;
 
 export {
-  logoSvg ,
-  Sidebar ,
-  Links ,
-  Content ,
-  Logo ,
-  Layout ,
   make ,
 }
 /*  Not a pure module */
