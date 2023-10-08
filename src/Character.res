@@ -25,7 +25,7 @@ module ListQuery = %relay(`
 
 module Content = {
   @react.component
-  let make = (~id) => {
+  let make = React.memo((~id) => {
     let data = Query.use(~variables={characterId: id}, ())
 
     switch data.character->Option.flatMap(({name, image}) =>
@@ -38,7 +38,7 @@ module Content = {
       </div>
     | None => <p> {`We couldn't find character details for id ${id}`->React.string} </p>
     }
-  }
+  })
 }
 
 @react.component

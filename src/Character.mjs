@@ -106,44 +106,44 @@ var ListQuery = {
   retain: retain$1
 };
 
-function Character$Content(props) {
-  var id = props.id;
-  var data = use({
-        characterId: id
-      }, undefined, undefined, undefined, undefined);
-  var match = Core__Option.flatMap(data.character, (function (param) {
-          return O$MyRescriptViteApp.map2(param.name, param.image, (function (name, image) {
-                        return {
-                                name: name,
-                                image: image
-                              };
-                      }));
-        }));
-  if (match !== undefined) {
-    return JsxRuntime.jsxs("div", {
-                children: [
-                  JsxRuntime.jsx("h2", {
-                        children: match.name
-                      }),
-                  JsxRuntime.jsx("img", {
-                        src: match.image
-                      })
-                ]
-              });
-  } else {
-    return JsxRuntime.jsx("p", {
-                children: "We couldn't find character details for id " + id
-              });
-  }
-}
+var make = React.memo(function (props) {
+      var id = props.id;
+      var data = use({
+            characterId: id
+          }, undefined, undefined, undefined, undefined);
+      var match = Core__Option.flatMap(data.character, (function (param) {
+              return O$MyRescriptViteApp.map2(param.name, param.image, (function (name, image) {
+                            return {
+                                    name: name,
+                                    image: image
+                                  };
+                          }));
+            }));
+      if (match !== undefined) {
+        return JsxRuntime.jsxs("div", {
+                    children: [
+                      JsxRuntime.jsx("h2", {
+                            children: match.name
+                          }),
+                      JsxRuntime.jsx("img", {
+                            src: match.image
+                          })
+                    ]
+                  });
+      } else {
+        return JsxRuntime.jsx("p", {
+                    children: "We couldn't find character details for id " + id
+                  });
+      }
+    });
 
 var Content = {
-  make: Character$Content
+  make: make
 };
 
 function Character(props) {
   return JsxRuntime.jsx(React.Suspense, {
-              children: Caml_option.some(JsxRuntime.jsx(Character$Content, {
+              children: Caml_option.some(JsxRuntime.jsx(make, {
                         id: props.id
                       })),
               fallback: Caml_option.some(JsxRuntime.jsx(ReactLoadingSkeleton, {
@@ -155,12 +155,12 @@ function Character(props) {
             });
 }
 
-var make = Character;
+var make$1 = Character;
 
 export {
   Query ,
   ListQuery ,
   Content ,
-  make ,
+  make$1 as make,
 }
-/* react Not a pure module */
+/* make Not a pure module */

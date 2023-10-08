@@ -9,9 +9,9 @@ import {
   cacheMiddleware,
   batchMiddleware
 } from "react-relay-network-modern/lib/index.js";
-import RelayServerSSR from 'react-relay-network-modern-ssr/lib/server';
 
 export const makeEnvironment = (relayServerSSR) => {
+  console.log(relayServerSSR)
   return new Environment({
     store: new Store(new RecordSource(), {
       gcReleaseBufferSize: 10,
@@ -41,8 +41,3 @@ export const makeEnvironment = (relayServerSSR) => {
     ),
   });
 };
-
-export default new Environment({
-  network: Network.create(makeEnvironment()),
-  store: new Store(new RecordSource()),
-});

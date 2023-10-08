@@ -5,7 +5,6 @@ let make = (~className="", ~href="", ~children) => {
   let (url, setUrl) = Url.useAtom()
 
   let (isActive, setIsActive) = React.useState(_ => false)
-  // Console.log3(url, href, isActive)
 
   React.useEffect1(() => {
     setIsActive(_ => url == href)
