@@ -11,7 +11,6 @@ import {
 } from "react-relay-network-modern/lib/index.js";
 
 export const makeEnvironment = (relayServerSSR) => {
-  console.log(relayServerSSR)
   return new Environment({
     store: new Store(new RecordSource(), {
       gcReleaseBufferSize: 10,
