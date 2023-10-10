@@ -28,15 +28,13 @@ module Content = {
   let make = React.memo((~id) => {
     let data = Query.use(~variables={characterId: id}, ())
 
-    switch data.character->Option.flatMap(({name, image}) =>
-      O.map2(name, image, (name, image) => {name, image})
-    ) {
-    | Some({name, image}) =>
+    switch data.character {
+    | Some({name: Some(name), image: Some(image)}) =>
       <div>
         <h2> {name->React.string} </h2>
         <img src=image />
       </div>
-    | None => <p> {`We couldn't find character details for id ${id}`->React.string} </p>
+    | _ => <p> {`We couldn't find character details for id ${id}`->React.string} </p>
     }
   })
 }
@@ -47,3 +45,13 @@ let make = (~id: string) => {
     <Content id />
   </React.Suspense>
 }
+
+type x = {one: option<int>}
+
+type t2 = {two: option<x>}
+
+let fn = (f: t2) =>
+  switch f {
+  | {two: Some({one: Some(y)})} => y
+  | _ => 0
+  }

@@ -25,7 +25,10 @@ function Counter(props) {
 
 var make = Counter;
 
+var counter = Counter;
+
 export {
   make ,
+  counter ,
 }
 /* react Not a pure module */

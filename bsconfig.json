@@ -48,5 +48,15 @@
   "bsc-flags": [
     "-open RescriptCore",
     "-open RescriptStruct"
-  ]
+  ],
+  "gentypeconfig": {
+    "language": "typescript",
+    "shims": {},
+    "generatedFileExtension": ".gen.tsx",
+    "module": "es6",
+    "debug": {
+      "all": false,
+      "basic": false
+    }
+  }
 }

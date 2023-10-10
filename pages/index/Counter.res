@@ -7,3 +7,5 @@ let make = () => {
     {count->Int.toString->React.string}
   </button>
 }
+
+let counter = make

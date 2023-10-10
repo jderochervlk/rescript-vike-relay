@@ -32,7 +32,7 @@
     "react-relay-network-modern-ssr": "file:.yalc/react-relay-network-modern-ssr",
     "react-ssr-prepass": "^1.5.0",
     "relay-runtime": "^15.0.0",
-    "rescript": "^11.0.0-rc.3",
+    "rescript": "^11.0.0-rc.4",
     "rescript-relay": "^2",
     "rescript-struct": "^5.0.1",
     "rescript-webapi": "^0.9.0",
@@ -44,6 +44,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.16",
     "concurrently": "^8.2.1",
+    "gentype": "^4.5.0",
     "graphql": "^16.8.1",
     "patch-package": "^8.0.0",
     "postcss": "^8.4.31",

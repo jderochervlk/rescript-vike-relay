@@ -2,9 +2,7 @@
 
 import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as Core__Option from "@rescript/core/src/Core__Option.mjs";
 import * as JsxRuntime from "react/jsx-runtime";
-import * as O$MyRescriptViteApp from "./O.mjs";
 import * as RescriptRelay_Query from "rescript-relay/src/RescriptRelay_Query.mjs";
 import ReactLoadingSkeleton from "react-loading-skeleton";
 import * as CharacterQuery_graphql$MyRescriptViteApp from "./__generated__/CharacterQuery_graphql.mjs";
@@ -111,30 +109,30 @@ var make = React.memo(function (props) {
       var data = use({
             characterId: id
           }, undefined, undefined, undefined, undefined);
-      var match = Core__Option.flatMap(data.character, (function (param) {
-              return O$MyRescriptViteApp.map2(param.name, param.image, (function (name, image) {
-                            return {
-                                    name: name,
-                                    image: image
-                                  };
-                          }));
-            }));
+      var match = data.character;
       if (match !== undefined) {
-        return JsxRuntime.jsxs("div", {
-                    children: [
-                      JsxRuntime.jsx("h2", {
-                            children: match.name
-                          }),
-                      JsxRuntime.jsx("img", {
-                            src: match.image
-                          })
-                    ]
-                  });
-      } else {
-        return JsxRuntime.jsx("p", {
-                    children: "We couldn't find character details for id " + id
-                  });
+        var image = match.image;
+        if (image !== undefined) {
+          var name = match.name;
+          if (name !== undefined) {
+            return JsxRuntime.jsxs("div", {
+                        children: [
+                          JsxRuntime.jsx("h2", {
+                                children: name
+                              }),
+                          JsxRuntime.jsx("img", {
+                                src: image
+                              })
+                        ]
+                      });
+          }
+          
+        }
+        
       }
+      return JsxRuntime.jsx("p", {
+                  children: "We couldn't find character details for id " + id
+                });
     });
 
 var Content = {
@@ -155,6 +153,19 @@ function Character(props) {
             });
 }
 
+function fn(f) {
+  var match = f.two;
+  if (match === undefined) {
+    return 0;
+  }
+  var y = match.one;
+  if (y !== undefined) {
+    return y;
+  } else {
+    return 0;
+  }
+}
+
 var make$1 = Character;
 
 export {
@@ -162,5 +173,6 @@ export {
   ListQuery ,
   Content ,
   make$1 as make,
+  fn ,
 }
 /* make Not a pure module */
