@@ -45,13 +45,3 @@ let make = (~id: string) => {
     <Content id />
   </React.Suspense>
 }
-
-type x = {one: option<int>}
-
-type t2 = {two: option<x>}
-
-let fn = (f: t2) =>
-  switch f {
-  | {two: Some({one: Some(y)})} => y
-  | _ => 0
-  }

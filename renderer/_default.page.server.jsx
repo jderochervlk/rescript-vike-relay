@@ -7,7 +7,7 @@ import ssrPrepass from "react-ssr-prepass";
 import { dangerouslySkipEscape, escapeInject } from "vike/server";
 import { make as PageShell } from "../src/PageShell";
 import logoUrl from "../src/logo.svg";
-import { makeEnvironment } from "./RelayEnvironment";
+import { makeEnvironment } from "./RelayEnv.mjs";
 import serialize from 'serialize-javascript';
 
 const { RelayEnvironmentProvider } = pkg;

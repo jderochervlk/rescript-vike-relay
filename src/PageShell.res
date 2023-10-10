@@ -95,6 +95,7 @@ let make = (~children, ~url) => {
     let _ = setUrl(_ => url)
     None
   })
+
   <React.StrictMode>
     <Layout key="site-layout">
       <Sidebar key="site-sidebar">

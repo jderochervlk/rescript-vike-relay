@@ -1,11 +1,13 @@
 export { render };
 
+import { atom, useAtom } from 'jotai';
+import { useHydrateAtoms } from 'jotai/utils';
 import { createRoot, hydrateRoot } from "react-dom/client";
 import 'react-loading-skeleton/dist/skeleton.css';
 import { RelayEnvironmentProvider } from "react-relay";
 import RelayClientSSR from 'react-relay-network-modern-ssr/lib/client';
 import { make as PageShell } from "../src/PageShell";
-import { makeClientEnvironment, makeEnvironment } from "./RelayEnvironment";
+import { makeEnvironment } from "./RelayEnv.mjs";
 
 let root;
 // This render() hook only supports SSR, see https://vike.dev/render-modes for how to modify render() to support SPA
@@ -14,9 +16,10 @@ async function render(pageContext) {
 
   const relayClientSSR = new RelayClientSSR(JSON.parse(relayCache))
 
+
   const page = (
     <RelayEnvironmentProvider environment={makeEnvironment(relayClientSSR)}>
-      <PageShell pageContext={pageContext} url={urlPathname}>
+      <PageShell pageContext={pageContext} url={urlPathname} relayCache={relayCache}>
         <Page {...pageProps} routeParams={routeParams} />
       </PageShell>
     </RelayEnvironmentProvider>
@@ -36,5 +39,5 @@ async function render(pageContext) {
   }
 }
 
-export const clientRouting = true;
+// export const clientRouting = true;
 export const hydrationCanBeAborted = true;

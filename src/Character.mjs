@@ -153,19 +153,6 @@ function Character(props) {
             });
 }
 
-function fn(f) {
-  var match = f.two;
-  if (match === undefined) {
-    return 0;
-  }
-  var y = match.one;
-  if (y !== undefined) {
-    return y;
-  } else {
-    return 0;
-  }
-}
-
 var make$1 = Character;
 
 export {
@@ -173,6 +160,5 @@ export {
   ListQuery ,
   Content ,
   make$1 as make,
-  fn ,
 }
 /* make Not a pure module */
