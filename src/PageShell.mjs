@@ -103,7 +103,7 @@ function PageShell(props) {
           Curry._1(setUrl, (function (param) {
                   return url;
                 }));
-        }), []);
+        }), undefined);
   return JsxRuntime.jsx(React.StrictMode, {
               children: JsxRuntime.jsxs(PageShell$Layout, {
                     children: [
