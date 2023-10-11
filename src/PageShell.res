@@ -23,23 +23,21 @@ module Links = {
   let make = () => {
     let t = Character.ListQuery.use(~variables=(), ())
 
-    {
-      switch t.characters->Option.flatMap(t => t.results) {
-      | Some(results) =>
-        results->Array.map(c =>
-          switch c {
-          | Some(c) => {
-              let id = c.id->Option.getWithDefault("-")
-              let name = c.name->Option.getWithDefault("unknown")
-              <Link key={`character-details-${id}`} href={`/character/${id}`}>
-                {name->React.string}
-              </Link>
-            }
-          | None => React.null
+    switch t.characters {
+    | Some({results: Some(results)}) =>
+      results->Array.map(c =>
+        switch c {
+        | Some(c) => {
+            let id = c.id->Option.getWithDefault("-")
+            let name = c.name->Option.getWithDefault("unknown")
+            <Link key={`character-details-${id}`} href={`/character/${id}`}>
+              {name->React.string}
+            </Link>
           }
-        )
-      | None => []
-      }
+        | None => React.null
+        }
+      )
+    | _ => []
     }->React.array
   }
 }

@@ -31,9 +31,11 @@ function PageShell$Sidebar(props) {
 
 function PageShell$Links(props) {
   var t = Character$MyRescriptViteApp.ListQuery.use(undefined, undefined, undefined, undefined, undefined);
-  var results = Core__Option.flatMap(t.characters, (function (t) {
-          return t.results;
-        }));
+  var match = t.characters;
+  if (match === undefined) {
+    return [];
+  }
+  var results = match.results;
   if (results !== undefined) {
     return results.map(function (c) {
                 if (c === undefined) {
