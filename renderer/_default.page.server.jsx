@@ -43,9 +43,9 @@ export async function render(pageContext) {
   )
 
   const { documentProps } = pageContext.exports;
-  const title = (documentProps && documentProps.title) || "Vite SSR app";
+  const title = (documentProps && documentProps.title) || "ReScript SSR";
   const desc =
-    (documentProps && documentProps.description) || "App using Vite + Vike";
+    (documentProps && documentProps.description) || "App using ReScript + Vite + Vike";
 
   // we convert the JS to JSON to send to the client from the server
   const relayCache = serialize(await relayServerSSR.getCache())

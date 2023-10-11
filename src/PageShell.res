@@ -68,7 +68,7 @@ module Logo = {
         marginTop: "20px",
         marginBottom: "10px",
       }}>
-      <a href="/">
+      <a href="/" title="home">
         <img src={logoSvg} height="64px" width={"64px"} alt="logo" key="logo-svg" />
       </a>
     </div>

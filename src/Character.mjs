@@ -111,20 +111,47 @@ var make = React.memo(function (props) {
           }, undefined, undefined, undefined, undefined);
       var match = data.character;
       if (match !== undefined) {
-        var image = match.image;
-        if (image !== undefined) {
-          var name = match.name;
-          if (name !== undefined) {
-            return JsxRuntime.jsxs("div", {
-                        children: [
-                          JsxRuntime.jsx("h2", {
-                                children: name
-                              }),
-                          JsxRuntime.jsx("img", {
-                                src: image
-                              })
-                        ]
-                      });
+        var gender = match.gender;
+        if (gender !== undefined) {
+          var image = match.image;
+          if (image !== undefined) {
+            var name = match.name;
+            if (name !== undefined) {
+              var species = match.species;
+              if (species !== undefined) {
+                var status = match.status;
+                if (status !== undefined) {
+                  return JsxRuntime.jsxs("div", {
+                              children: [
+                                JsxRuntime.jsx("h1", {
+                                      children: name,
+                                      className: "text-2xl"
+                                    }),
+                                JsxRuntime.jsx("img", {
+                                      className: "my-5 rounded max-w-100",
+                                      src: image
+                                    }),
+                                JsxRuntime.jsxs("ul", {
+                                      children: [
+                                        JsxRuntime.jsx("li", {
+                                              children: "Gender: " + gender
+                                            }),
+                                        JsxRuntime.jsx("li", {
+                                              children: "Species: " + species
+                                            }),
+                                        JsxRuntime.jsx("li", {
+                                              children: "Status: " + status
+                                            })
+                                      ]
+                                    })
+                              ]
+                            });
+                }
+                
+              }
+              
+            }
+            
           }
           
         }

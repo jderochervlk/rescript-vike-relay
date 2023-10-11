@@ -8,6 +8,9 @@ module Query = %relay(`
     character(id: $characterId) {
       name
       image
+      gender
+      species
+      status
     }
   }
 `)
@@ -29,10 +32,21 @@ module Content = {
     let data = Query.use(~variables={characterId: id}, ())
 
     switch data.character {
-    | Some({name: Some(name), image: Some(image)}) =>
+    | Some({
+        name: Some(name),
+        image: Some(image),
+        gender: Some(gender),
+        species: Some(species),
+        status: Some(status),
+      }) =>
       <div>
-        <h2> {name->React.string} </h2>
-        <img src=image />
+        <h1 className="text-2xl"> {name->React.string} </h1>
+        <img src=image className="my-5 rounded max-w-100" />
+        <ul>
+          <li> {`Gender: ${gender}`->React.string} </li>
+          <li> {`Species: ${species}`->React.string} </li>
+          <li> {`Status: ${status}`->React.string} </li>
+        </ul>
       </div>
     | _ => <p> {`We couldn't find character details for id ${id}`->React.string} </p>
     }

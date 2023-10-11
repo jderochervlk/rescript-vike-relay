@@ -2,28 +2,40 @@
 
 import * as React from "react";
 import * as JsxRuntime from "react/jsx-runtime";
-import * as Counter$MyRescriptViteApp from "./Counter.mjs";
 
 function Index_page(props) {
   return JsxRuntime.jsxs(React.Fragment, {
               children: [
                 JsxRuntime.jsx("h1", {
-                      children: "Welcome",
-                      className: "text-2xl"
+                      children: "Rick and Morty characters",
+                      className: "text-3xl"
                     }),
-                "This page is:",
-                JsxRuntime.jsxs("ul", {
+                JsxRuntime.jsx("p", {
+                      children: "Please use the sidebar to learn more about your favorite characters.",
+                      className: "mt-2"
+                    }),
+                JsxRuntime.jsx("hr", {}),
+                JsxRuntime.jsxs("p", {
                       children: [
-                        JsxRuntime.jsx("li", {
-                              children: "Rendered to HTML."
+                        "This is a demo application created using ",
+                        JsxRuntime.jsx("a", {
+                              children: "ReScript",
+                              className: "underline text-blue-500 hover:text-blue-900",
+                              title: "ReScript",
+                              href: "https://rescript-lang.org/"
                             }),
-                        JsxRuntime.jsxs("li", {
-                              children: [
-                                "Interactive ",
-                                JsxRuntime.jsx(Counter$MyRescriptViteApp.make, {})
-                              ]
+                        ".",
+                        JsxRuntime.jsx("a", {
+                              children: JsxRuntime.jsx("img", {
+                                    className: "w-10 mt-5",
+                                    alt: "GitHub repository",
+                                    src: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                                  }),
+                              title: "GitHub repo",
+                              href: "https://github.com/jderochervlk/rescript-vike-relay"
                             })
-                      ]
+                      ],
+                      className: "text-l mt-5"
                     })
               ]
             });

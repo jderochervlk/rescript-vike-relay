@@ -72,6 +72,7 @@ function PageShell$Logo(props) {
                           src: logoSvg,
                           width: "64px"
                         }, "logo-svg"),
+                    title: "home",
                     href: "/"
                   }),
               style: {

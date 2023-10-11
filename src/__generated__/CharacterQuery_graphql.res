@@ -5,8 +5,11 @@ module Types = {
   @@ocaml.warning("-30")
 
   type rec response_character = {
+    gender: option<string>,
     image: option<string>,
     name: option<string>,
+    species: option<string>,
+    status: option<string>,
   }
   type response = {
     character: option<response_character>,
@@ -123,6 +126,27 @@ v3 = {
   "kind": "ScalarField",
   "name": "image",
   "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "gender",
+  "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "species",
+  "storageKey": null
+},
+v6 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "status",
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -140,7 +164,10 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          (v3/*: any*/)
+          (v3/*: any*/),
+          (v4/*: any*/),
+          (v5/*: any*/),
+          (v6/*: any*/)
         ],
         "storageKey": null
       }
@@ -164,6 +191,9 @@ return {
         "selections": [
           (v2/*: any*/),
           (v3/*: any*/),
+          (v4/*: any*/),
+          (v5/*: any*/),
+          (v6/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -177,12 +207,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "ceeb61ac5875e1fb476f4fa4ba5b2919",
+    "cacheID": "958cc62a2e59937561dcdf89c0b3c98f",
     "id": null,
     "metadata": {},
     "name": "CharacterQuery",
     "operationKind": "query",
-    "text": "query CharacterQuery(\n  $characterId: ID!\n) {\n  character(id: $characterId) {\n    name\n    image\n    id\n  }\n}\n"
+    "text": "query CharacterQuery(\n  $characterId: ID!\n) {\n  character(id: $characterId) {\n    name\n    image\n    gender\n    species\n    status\n    id\n  }\n}\n"
   }
 };
 })() `)

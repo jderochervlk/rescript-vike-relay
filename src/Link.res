@@ -11,7 +11,12 @@ let make = (~className="", ~href="", ~children) => {
     None
   }, [url])
 
-  let class = classnames([className, isActive ? "text-blue-500" : "", "cursor-pointer"])
+  let class = classnames([
+    className,
+    isActive ? "text-blue-500" : "",
+    "cursor-pointer",
+    "hover:text-blue-700",
+  ])
 
   <a className={class} href style={{cursor: "pointer"}} onClick={_ => setUrl(_ => href)}>
     {children}
