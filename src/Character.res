@@ -41,7 +41,13 @@ module Content = {
       }) =>
       <div>
         <h1 className="text-2xl"> {name->React.string} </h1>
-        <Lazy.Image src=image className="my-5 rounded max-w-100" />
+        <React.Suspense>
+          <Lazy.Image
+            src=image
+            placeholder={<div className="bg-slate-300 h-[300px] w-[300px] rounded" />}
+            className="my-5 rounded max-w-100"
+          />
+        </React.Suspense>
         <ul>
           <li> {`Gender: ${gender}`->React.string} </li>
           <li> {`Species: ${species}`->React.string} </li>

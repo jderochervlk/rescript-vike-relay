@@ -5,6 +5,7 @@ import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as JsxRuntime from "react/jsx-runtime";
 import * as RescriptRelay_Query from "rescript-relay/src/RescriptRelay_Query.mjs";
 import ReactLoadingSkeleton from "react-loading-skeleton";
+import * as ReactLazyLoadImageComponent from "react-lazy-load-image-component";
 import * as CharacterQuery_graphql$MyRescriptViteApp from "./__generated__/CharacterQuery_graphql.mjs";
 import * as CharacterListQuery_graphql$MyRescriptViteApp from "./__generated__/CharacterListQuery_graphql.mjs";
 
@@ -127,9 +128,14 @@ var make = React.memo(function (props) {
                                       children: name,
                                       className: "text-2xl"
                                     }),
-                                JsxRuntime.jsx("img", {
-                                      className: "my-5 rounded max-w-100",
-                                      src: image
+                                JsxRuntime.jsx(React.Suspense, {
+                                      children: Caml_option.some(JsxRuntime.jsx(ReactLazyLoadImageComponent.LazyLoadImage, {
+                                                src: image,
+                                                className: "my-5 rounded max-w-100",
+                                                placeholder: Caml_option.some(JsxRuntime.jsx("div", {
+                                                          className: "bg-slate-300 h-[300px] w-[300px] rounded"
+                                                        }))
+                                              }))
                                     }),
                                 JsxRuntime.jsxs("ul", {
                                       children: [
