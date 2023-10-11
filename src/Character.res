@@ -41,7 +41,7 @@ module Content = {
       }) =>
       <div>
         <h1 className="text-2xl"> {name->React.string} </h1>
-        <img src=image className="my-5 rounded max-w-100" />
+        <Lazy.Image src=image className="my-5 rounded max-w-100" />
         <ul>
           <li> {`Gender: ${gender}`->React.string} </li>
           <li> {`Species: ${species}`->React.string} </li>
