@@ -12,7 +12,7 @@
     "relay:dev": "rescript-relay-compiler --watch",
     "postinstall": "patch-package",
     "start": "concurrently --prefix -c red,blue,green --names ReScript,Relay,Vite \"npm run res:dev\" \"npm run relay:dev\" \"npm run dev\"",
-    "ci": "npx post-install && npm run res:build && vite build"
+    "ci": "npx patch-package && npm run res:build && vite build"
   },
   "dependencies": {
     "@fattafatta/rescript-jotai": "^0.3.0",
